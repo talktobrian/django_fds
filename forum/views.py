@@ -12,25 +12,30 @@ from django.db import IntegrityError
 
 
 def register(request):
-    error = None
+    # Erros por campo, como no protótipo (signup-error): a mensagem aparece embaixo do campo
+    erros = {}
+    usuario = ''
     if request.method == 'POST':
         usuario = (request.POST.get('username') or '').strip()
         senha = request.POST.get('password')
 
-        if not usuario or not senha:
-            error = 'Preencha o usuário e a senha!'
-        elif User.objects.filter(username=usuario).exists():
-            error = 'Este usuário já existe!'
-        else:
-            try:
-                user = User.objects.create_user(username=usuario, password=senha)
-            except IntegrityError:
-                error = 'Este usuário já existe!'
+        if not usuario:
+            erros['username'] = 'Preencha o nome de usuário.'
+        if not senha:
+            erros['password'] = 'Preencha a senha.'
+        if not erros:
+            if User.objects.filter(username=usuario).exists():
+                erros['username'] = 'Nome de usuário indisponível.'
             else:
-                login(request, user)
-                return redirect('ia_chat')
+                try:
+                    user = User.objects.create_user(username=usuario, password=senha)
+                except IntegrityError:
+                    erros['username'] = 'Nome de usuário indisponível.'
+                else:
+                    login(request, user)
+                    return redirect('ia_chat')
 
-    return render(request, 'forum/register.html', {'error': error})
+    return render(request, 'forum/register.html', {'erros': erros, 'usuario': usuario})
 
 def index(request):
     return render(request, 'forum/index.html')

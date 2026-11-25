@@ -179,22 +179,13 @@ h6 { font-family: var(--font-heading); font-size: var(--fs-h6); font-weight: 700
 
 a { color: var(--link); }
 
-/* ===== CABEÇALHO ===== */
-:root {
-    --nav-bg: var(--bg-body);
-    --nav-text: var(--texto-2);
-    --nav-icon: var(--texto-3);
-    --nav-accent: var(--laranja-700);   /* link ativo, "Entrar" e fundo do switch */
-}
-
+/* ===== CABEÇALHO (Figma: Protótipo final / NavBar) ===== */
 .header {
-    background-color: var(--nav-bg);
-    color: var(--nav-text);
-    padding: 12px var(--pad-x);
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: background-color 0.3s ease;
+    background: var(--white);
+    padding: 8px var(--pad-x);
 }
 .header-container {
     max-width: var(--container-max);
@@ -202,105 +193,115 @@ a { color: var(--link); }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 }
-.header h1 {
-    font-size: 28px;
-    color: var(--nav-text);
-}
+.header-logo { display: block; flex-shrink: 0; line-height: 0; }
+.header-logo img { width: 132px; height: 40px; }
 
-.nav { display: flex; align-items: center; }
-.nav-links { display: flex; gap: 70px; }
-.nav .nav-links a {
-    color: var(--nav-text);
+/* Lado direito: links | Entrar | BRIAN distribuídos em 970px */
+.nav {
+    flex: 0 1 970px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+.nav-actions { display: contents; }
+.nav-links { display: flex; align-items: center; gap: 64px; }
+
+/* Links e "Entrar": H6 (Carlito Bold 20/24, maiúsculas) */
+.nav-links a,
+.nav-entrar {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h6);
+    line-height: var(--lh-h6);
+    font-weight: 700;
+    text-transform: uppercase;
     text-decoration: none;
-    font-size: var(--fs-body-sm);
-    font-weight: 600;
+    white-space: nowrap;
     transition: var(--transition);
 }
-.nav .nav-links a:hover,
-.nav .nav-links a.active { color: var(--nav-accent); }
+.nav-links a { color: var(--grey-775); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--orange-500); }
 
-/* Entrar / Sair */
-.nav .nav-entrar,
 .nav-entrar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-left: 123px;
+    gap: 10px;
     padding: 0;
     border: 0;
     background: none;
     cursor: pointer;
-    text-decoration: none;
-    color: var(--nav-icon);                    /* o SVG usa currentColor */
+    color: var(--orange-500);              /* o SVG usa currentColor */
 }
-.nav-entrar span {
-    color: var(--nav-accent);
-    font-family: var(--font-button);
-    font-size: 16px;
-    font-weight: 700;
-}
-.nav-entrar:hover span { text-decoration: underline; }
-.logout-form { margin: 0 0 0 123px; display: inline-flex; align-items: center; }
-.logout-form .nav-entrar { margin-left: 0; }
+.nav-entrar:hover { color: var(--orange-625); }
+.logout-form { margin: 0; display: inline-flex; align-items: center; }
 
-/* Ícone BrIAn que vira botão */
-.nav .brian-btn {
+.nav a:focus-visible,
+.nav button:focus-visible { outline: 2px solid var(--orange-500); outline-offset: 4px; border-radius: 2px; }
+
+/* brian-icon: 32px (Status=default) que cresce para 124px com "BRIAN" (Status=hover) */
+.brian-btn {
     position: relative;
-    display: block;
     flex-shrink: 0;
-    width: 35px;
-    height: 35px;
-    margin-left: 81px;
-    padding: 0;
-    background: none;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: 92px;                     /* reserva o espaço do estado expandido */
+    overflow: hidden;
+    text-decoration: none;
+    transition: width 0.3s ease, margin-left 0.3s ease;
 }
-.pilula {
+.brian-btn::before {                       /* contorno: canto superior esquerdo reto */
+    content: "";
     position: absolute;
-    top: 0;
-    right: 0;                                  /* ancora à direita: ao crescer, vai para a esquerda */
-    width: 35px;
-    height: 35px;
-    border-radius: 35px 35px 35px 0;
-    background: transparent;
-    color: #fff;
-    font-family: var(--font-button);
-    font-size: 16px;
-    font-weight: 700;
-    white-space: nowrap;
-    transition: width 0.3s ease, background-color 0.3s ease;
+    inset: 0;
+    border: 2px solid var(--orange-500);
+    border-radius: 0 16px 16px 16px;
 }
-.pilula .icone,
-.pilula .texto {
+.brian-btn__texto {
     position: absolute;
+    left: 29px;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: var(--fs-h6);
+    line-height: 1;
+    color: var(--orange-625);
+    white-space: nowrap;
+    opacity: 0;
     transition: opacity 0.2s ease;
 }
-.pilula .texto { opacity: 0; }
-
-.brian-btn:hover .pilula,
-.brian-btn:focus-visible .pilula {
-    width: 96px;
-    background: var(--brand);
+.brian-btn__ponto {                        /* ponto 13px, canto inferior direito reto */
+    position: absolute;
+    right: 0;
+    bottom: 1px;
+    width: 13px;
+    height: 13px;
+    background: var(--orange-500);
+    border-radius: 6.5px 6.5px 0 6.5px;
 }
-.brian-btn:hover .icone,
-.brian-btn:focus-visible .icone { opacity: 0; }
-.brian-btn:hover .texto,
-.brian-btn:focus-visible .texto { opacity: 1; transition-delay: 0.1s; }
+.brian-btn:hover,
+.brian-btn:focus-visible { width: 124px; margin-left: 0; }
+.brian-btn:hover .brian-btn__texto,
+.brian-btn:focus-visible .brian-btn__texto { opacity: 1; transition-delay: 0.1s; }
+.brian-btn:focus-visible { outline: 2px solid var(--orange-500); outline-offset: 3px; }
 
-/* Telas menores: aproxima os itens */
+@media (prefers-reduced-motion: reduce) {
+    .brian-btn, .brian-btn__texto { transition: none; }
+}
+
+/* Telas menores */
 @media (max-width: 1100px) {
-    .nav-links { gap: 28px; }
-    .nav-entrar, .logout-form, .nav .brian-btn { margin-left: 32px; }
+    .nav { flex-basis: auto; gap: 32px; }
+    .nav-links { gap: 32px; }
 }
-@media (max-width: 640px) {
-    .header-container { flex-wrap: wrap; }
-    .nav { flex-wrap: wrap; row-gap: 12px; }
-    .nav-links { gap: 16px; }
-    .nav-entrar, .logout-form, .nav .brian-btn { margin-left: 16px; }
+@media (max-width: 760px) {
+    .header-container { flex-wrap: wrap; row-gap: 12px; }
+    .nav { flex: 1 1 100%; flex-wrap: wrap; row-gap: 12px; }
+    .nav-links { gap: 20px; }
+    .nav-links a, .nav-entrar { font-size: var(--fs-body-md); line-height: var(--lh-body-md); }
 }
 
 /* ===== CONTAINERS ===== */
@@ -315,6 +316,48 @@ a { color: var(--link); }
     max-width: var(--container-slim-max);
     padding-top: var(--pad-y-slim);
     padding-bottom: var(--pad-y-slim);
+}
+/* Páginas do protótipo que controlam as próprias seções (largura total) */
+.container--full {
+    max-width: none;
+    padding: 0;
+}
+
+/* ===== BOTÃO (Styleguide BRIAN / Button) =====
+   Variantes: primary (laranja) e outline (contorno laranja).
+   Estados: hover, focus (anel externo laranja) e disabled (cinza). */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Figma: caixa de 48px com padding de 12px e contorno de 1px POR FORA (strokeAlign OUTSIDE).
+       Em CSS a borda fica dentro da caixa, então: altura 48 + 2 = 50px,
+       raio externo 2 + 1 = 3px (o preenchimento continua com raio 2px). */
+    height: 50px;
+    padding: 0 12px;
+    border: 1px solid var(--orange-500);
+    border-radius: 3px;
+    font-family: var(--font-button);
+    font-size: 20px;
+    line-height: normal;                   /* Figma: altura de linha automática */
+    font-weight: 400;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.button--primary { background: var(--orange-500); color: var(--white); }
+.button--primary:hover { background: var(--orange-900); border-color: var(--orange-900); }
+.button--outline { background: var(--white); color: var(--orange-500); }
+.button--outline:hover { background: var(--orange-50); }
+.button:focus-visible { outline: 2px solid var(--orange-500); outline-offset: 2px; }
+.button:disabled,
+.button[aria-disabled="true"] {
+    background: var(--grey-100);
+    border-color: var(--grey-500);
+    color: var(--grey-500);
+    cursor: not-allowed;
 }
 .container--chat {
     padding-top: 15px;
@@ -449,35 +492,88 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .feedback-date { font-size: 0.8rem; color: var(--text-muted); }
 .feedback-text { color: var(--text-secondary); line-height: 1.55; word-break: break-word; font-size: var(--fs-body-sm); }
 
-/* ===== RODAPÉ ===== */
+/* ===== RODAPÉ (Figma: Protótipo final / footer) ===== */
 .footer {
-    background: var(--header-bg);
-    color: var(--texto-5);
-    padding: 40px var(--pad-x) 18px;
     margin-top: auto;
-    font-size: var(--fs-body-sm);
+    padding: 50px var(--pad-x);
+    background: var(--grey-900);
+    border-radius: var(--radius) var(--radius) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 83px;
 }
 .footer-container {
+    width: 100%;
     max-width: var(--container-max);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 123px;
 }
-.footer-logo:empty { display: none; }
-.footer h4 { color: var(--texto-6); margin-bottom: 12px; }
-.footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.footer a { color: var(--texto-5); text-decoration: none; }
-.footer a:hover, .footer a.active { color: var(--laranja-300); }
-.footer-copy {
-    max-width: var(--container-max);
-    margin: 32px auto 0;
-    padding-top: 16px;
-    border-top: 1px solid var(--roxo-800);
+.footer-brand {
+    flex-shrink: 0;
+    width: 143px;
+    display: flex;
+    flex-direction: column;
+}
+.footer-brand img { display: block; width: 143px; height: 40px; }
+.footer-brand p {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body-sm);
+    color: var(--grey-375);
     text-align: center;
-    font-size: 0.85rem;
 }
-@media (max-width: 640px) { .footer-container { grid-template-columns: 1fr; } }
+.footer-cols {
+    flex: 1;
+    max-width: 972px;              /* colunas alinhadas a 286px / 732px / 1174px no frame de 1440 */
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+}
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.footer h4 {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h6);
+    line-height: var(--lh-h6);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--grey-100);
+}
+.footer ul { list-style: none; display: flex; flex-direction: column; gap: 32px; }
+.footer a {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-md);
+    line-height: var(--lh-body-md);
+    color: var(--grey-225);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.footer a:hover,
+.footer a.active { color: var(--orange-500); }
+.footer a:focus-visible { outline: 2px solid var(--orange-500); outline-offset: 2px; }
+.footer-copy {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: var(--fs-body-md);
+    line-height: var(--lh-body-md);
+    color: var(--grey-375);
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .footer { gap: 48px; }
+    .footer-container { flex-direction: column; gap: 40px; }
+    .footer-cols { width: 100%; }
+}
+@media (max-width: 560px) {
+    .footer-cols { flex-direction: column; gap: 32px; }
+    .footer ul { gap: 16px; }
+}
 
 /* ===== CHAT (conforme wireframe) ===== */
 :root {
@@ -1155,31 +1251,6 @@ button.btn-quiz { width: 100%; border: none; cursor: pointer; font-family: inher
     cursor: pointer;
 }
 .quiz-chat-texto button:hover { background: var(--brand-hover); }
-
-.brian-hero .brian-hero-intro h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: var(--ls-title);
-}
-
-.brian-hero .brian-chat-animation {
-    width: 100%;
-    max-width: 660px;
-    margin: 40px auto 0;
-    padding: 0;
-}
-
-.brian-hero .floating-bubble {
-    padding: 0 36px;
-    line-height: 1.45;
-    letter-spacing: 0.03em;
-    word-spacing: 0.1em;
-}
-
-@media (max-width: 700px) {
-    .brian-hero .brian-chat-animation { gap: 20px; }
-    .brian-hero .floating-bubble { padding: 0 22px; }
-}
 
 .brian-digitando .message-bubble { display: flex; gap: 5px; padding: 6px 0; }
 .brian-digitando .ponto {

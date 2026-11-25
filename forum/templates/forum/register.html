@@ -1,35 +1,43 @@
 {% extends 'forum/base.html' %}
 
-{% block title %}Criar Conta - BrIAn{% endblock %}
-{% block container_class %}container--slim{% endblock %}
+{% block title %}Criar conta - BRIAN{% endblock %}
+{% block container_class %}container--full auth{% endblock %}
 
 {% block content %}
-<div class="login-wrapper">
-    <div class="card login-card">
-        <h2>Criar Conta</h2>
-        
-        {% if error %}
-            <p class="error-message">{{ error }}</p>
-        {% endif %}
+<!-- Figma: Protótipo final / signup-default, signup-error, signup-filled -->
+<section class="auth-card">
+    <header class="auth-card__info">
+        <h1 class="auth-card__titulo">Criar conta</h1>
+        <p class="auth-card__texto">Crie uma conta para poder salvar os seus históricos e ter a experiência completa com o BRIAN.</p>
+    </header>
 
-        <form method="post" action="{% url 'register' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Usuário</label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Digite seu usuário" required>
-            </div>
+    <form method="post" action="{% url 'register' %}" class="auth-card__form" novalidate>
+        {% csrf_token %}
 
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" required>
-            </div>
+        <div class="campo{% if erros.username %} campo--erro{% endif %}">
+            <label for="username" class="campo__label">Usuário:</label>
+            <input type="text" name="username" id="username" class="campo__input"
+                   placeholder="joao123" autocomplete="username" autocapitalize="none" required
+                   value="{{ usuario }}"
+                   {% if erros.username %}aria-invalid="true" aria-describedby="erro-username"{% endif %}>
+            {% if erros.username %}
+            <p class="campo__dica" id="erro-username" role="alert">{{ erros.username }}</p>
+            {% endif %}
+        </div>
 
-            <button type="submit" class="btn-primary">Cadastrar</button>
-        </form>
+        <div class="campo{% if erros.password %} campo--erro{% endif %}">
+            <label for="password" class="campo__label">Senha:</label>
+            <input type="password" name="password" id="password" class="campo__input"
+                   placeholder="senha123" autocomplete="new-password" required
+                   {% if erros.password %}aria-invalid="true" aria-describedby="erro-password"{% endif %}>
+            {% if erros.password %}
+            <p class="campo__dica" id="erro-password" role="alert">{{ erros.password }}</p>
+            {% endif %}
+        </div>
 
-        <p class="switch-link">
-            Já tem conta? <a href="{% url 'login' %}">Entrar aqui</a>
-        </p>
-    </div>
-</div>
+        <button type="submit" class="button button--primary auth-card__botao">Criar conta</button>
+    </form>
+
+    <p class="auth-card__conta">Já possui conta? <a href="{% url 'login' %}">Entrar.</a></p>
+</section>
 {% endblock %}

@@ -1,31 +1,43 @@
 {% extends 'forum/base.html' %}
-{% block title %}Entrar{% endblock %}
-{% block container_class %}container--slim{% endblock %}
+
+{% block title %}Entrar - BRIAN{% endblock %}
+{% block container_class %}container--full auth{% endblock %}
 
 {% block content %}
-<div class="login-wrapper">
-    <div class="card login-card">
-        <h2>Entrar</h2>
+<!-- Figma: Protótipo final / login-default, login-error, login-filled -->
+<section class="auth-card">
+    <header class="auth-card__info">
+        <h1 class="auth-card__titulo">Entrar</h1>
+        <p class="auth-card__texto">Faça o login para poder salvar os seus históricos e ter a experiência completa com o BRIAN.</p>
+    </header>
 
-        {% if form.errors %}
-        <div class="error-message">Usuário ou senha incorretos.</div>
-        {% endif %}
+    {% with erro=form.errors %}
+    <form method="post" class="auth-card__form" novalidate>
+        {% csrf_token %}
 
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_username">Usuário</label>
-                <input type="text" name="username" id="id_username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="id_password">Senha</label>
-                <input type="password" name="password" id="id_password" class="form-control" required>
-            </div>
-            <input type="hidden" name="next" value="{{ next }}">
-            <button type="submit" class="btn-primary">Entrar</button>
-        </form>
+        <div class="campo{% if erro %} campo--erro{% endif %}">
+            <label for="id_username" class="campo__label">Usuário:</label>
+            <input type="text" name="username" id="id_username" class="campo__input"
+                   placeholder="joao123" autocomplete="username" autocapitalize="none" required
+                   value="{{ form.username.value|default_if_none:'' }}"
+                   {% if erro %}aria-invalid="true" aria-describedby="login-erro"{% endif %}>
+        </div>
 
-        <p class="switch-link">Não tem conta? <a href="{% url 'register' %}">Criar conta</a></p>
-    </div>
-</div>
+        <div class="campo{% if erro %} campo--erro{% endif %}">
+            <label for="id_password" class="campo__label">Senha:</label>
+            <input type="password" name="password" id="id_password" class="campo__input"
+                   placeholder="senha123" autocomplete="current-password" required
+                   {% if erro %}aria-invalid="true" aria-describedby="login-erro"{% endif %}>
+            {% if erro %}
+            <p class="campo__dica" id="login-erro" role="alert">Usuário ou senha incompatíveis.</p>
+            {% endif %}
+        </div>
+
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="button button--primary auth-card__botao">Entrar</button>
+    </form>
+    {% endwith %}
+
+    <p class="auth-card__conta">Não possui conta? <a href="{% url 'register' %}">Criar conta.</a></p>
+</section>
 {% endblock %}

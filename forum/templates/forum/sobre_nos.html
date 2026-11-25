@@ -1,490 +1,436 @@
 {% extends 'forum/base.html' %}
 {% load static %}
 
-{% block title %}Fale Conosco - BrIAn{% endblock %}
-{% block container_class %}container--slim{% endblock %}
+{% block title %}Fale Conosco - BRIAN{% endblock %}
+{% block container_class %}container--full{% endblock %}
 
 {% block content %}
 
-<!-- ========== TOPO ========== -->
-<section class="equipe-topo">
-    <div class="equipe-topo__texto">
-        <h1>Essa é a equipe que faz o BRIAN funcionar</h1>
-        <p>
-            Somos uma equipe de estudantes de ciência da computação e de design,
-            abertos a projetos e feedbacks sobre o BRIAN.
-        </p>
-    </div>
+<!-- Figma: Protótipo final / fale conosco -->
+<div class="fale">
 
-    <!-- Foto do grupo: salve em static/forum/img/equipe/grupo.jpg
-         Enquanto o arquivo não existir, o ícone aparece no lugar -->
-    <div class="equipe-topo__midia">
-        <svg viewBox="0 0 120 120" class="equipe-topo__icone" aria-hidden="true">
-            <circle cx="40" cy="44" r="14" />
-            <circle cx="80" cy="44" r="14" />
-            <path d="M14 96c4-18 16-26 26-26s22 8 26 26" />
-            <path d="M54 96c4-18 16-26 26-26s22 8 26 26" />
-        </svg>
-<img src="{% static 'equipe.jpeg' %}" alt="Foto da equipe brIAn" loading="lazy" style="transform: scale(1.5); transform-origin: 50% 70%;" onerror="this.remove()">
-    </div>
-</section>
+    <!-- hero-section -->
+    <section class="fale-hero">
+        <span class="fale-blob fale-blob--hero" aria-hidden="true"></span>
 
-<!-- ========== MEMBROS ========== -->
-<section class="equipe-membros">
-    <div class="equipe-circulo equipe-circulo--rosa" aria-hidden="true"></div>
-    <div class="equipe-circulo equipe-circulo--roxo" aria-hidden="true"></div>
+        <div class="fale-hero__texto">
+            <h1>A equipe que fez o <span class="destaque">BRIAN</span> acontecer</h1>
+            <p class="body-md">
+                Somos um time composto por 7 alunos de ciência da computação e 3 de design.
+                Juntos, elaboramos o BRIAN a partir de um problema identificado com a empresa Bzu Tech.
+            </p>
+        </div>
 
-    <h2 class="equipe-titulo">Conheça cada membro</h2>
+        <img class="fale-hero__foto"
+             src="{% static 'assets_brian/fale conosco/web/equipe-brian.jpg' %}"
+             alt="Foto da equipe do BRIAN reunida"
+             width="577" height="577">
+    </section>
 
-    <!-- Fotos individuais: salve em static/forum/img/equipe/
-         Enquanto o arquivo não existir, as iniciais aparecem no lugar -->
-    <div class="membros-grid">
-        <article class="membro">
-            <div class="membro__foto membro__foto--laranja">
-                <span aria-hidden="true">BV</span>
- <img src="{% static 'beatriz-vieira.jpeg' %}" alt="Foto de Beatriz Vieira" loading="lazy" style="object-position: center 45%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Beatriz Vieira</h3>
-                <a href="mailto:bvot@cesar.school">bvot@cesar.school</a>
-            </div>
-        </article>
+    <!-- team-section -->
+    <section class="fale-time">
+        <span class="fale-blob fale-blob--time" aria-hidden="true"></span>
 
-        <article class="membro">
-            <div class="membro__foto membro__foto--roxo">
-                <span aria-hidden="true">BM</span>
-<img src="{% static 'bryan-martins.jpeg' %}" alt="Foto de Bryan Martins" loading="lazy" style="object-position: center 10%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Bryan Martins</h3>
-                <a href="mailto:bmp@cesar.school">bmp@cesar.school</a>
-            </div>
-        </article>
+        <h2 class="text-h3 fale-time__titulo">Integrantes:</h2>
 
-        <article class="membro">
-            <div class="membro__foto membro__foto--laranja">
-                <span aria-hidden="true">GL</span>
-        <img src="{% static 'gabriella-lima.jpeg' %}" alt="Foto de Gabriella Lima" loading="lazy" style="object-position: center 30%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Gabriella Lima</h3>
-                <a href="mailto:gla3@cesar.school">gla3@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--roxo">
-                <span aria-hidden="true">GC</span>
- <img src="{% static 'gustavo-cavalcanti.jpeg' %}" alt="Foto de Gustavo Cavalcanti" loading="lazy" style="object-position: center 25%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Gustavo Cavalcanti</h3>
-                <a href="mailto:gcnf@cesar.school">gcnf@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--laranja">
-                <span aria-hidden="true">IL</span>
-     <img src="{% static 'isabel-lucena.jpeg' %}" alt="Foto de Isabel Lucena" loading="lazy" style="object-position: center 25%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Isabel Lucena</h3>
-                <a href="mailto:ial2@cesar.school">ial2@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--roxo">
-                <span aria-hidden="true">JH</span>
-  <img src="{% static 'joao-henrique.jpeg' %}" alt="Foto de Joao Henrique" loading="lazy" style="object-position: center 10%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>João Henrique</h3>
-                <a href="mailto:jhmra@cesar.school">jhmra@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--laranja">
-                <span aria-hidden="true">HV</span>
-            <img src="{% static 'heitor-villa-chan.jpeg' %}" alt="Foto de Heitor Villa Chan" loading="lazy" style="object-position: center 20%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">ciência da computação</span>
-                <h3>Heitor Villa-chan</h3>
-                <a href="mailto:hvccp@cesar.school">hvccp@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--roxo">
-                <span aria-hidden="true">BÁ</span>
-            <img src="{% static 'bianca-avila.jpeg' %}" alt="Foto de Bianca Avila" loading="lazy" style="object-position: center 20%;" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">design</span>
-                <h3>Bianca Ávila</h3>
-                <a href="mailto:bgap@cesar.school">bgap@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--laranja">
-                <span aria-hidden="true">GC</span>
-                <img src="{% static 'gabriela-cardoso.jpeg' %}" alt="Foto de Gabriela Cardoso" loading="lazy" style="object-position: center 33%; transform: translate(9%, 0) scale(1.2);" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">design</span>
-                <h3>Gabriela Cardoso</h3>
-                <a href="mailto:gasc@cesar.school">gasc@cesar.school</a>
-            </div>
-        </article>
-
-        <article class="membro">
-            <div class="membro__foto membro__foto--roxo">
-                <span aria-hidden="true">SC</span>
-              <img src="{% static 'sophia-coutinho.jpeg' %}" alt="Foto de Sophia Coutinho" loading="lazy" style="object-position: center 25%; transform: translate(9%, 0) scale(1.2);" onerror="this.remove()">
-            </div>
-            <div class="membro__corpo">
-                <span class="membro__curso">design</span>
-                <h3>Sophia Coutinho</h3>
-                <a href="mailto:scl2@cesar.school">scl2@cesar.school</a>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- ========== FEEDBACKS ========== -->
-<section class="equipe-feedback">
-    <h2 class="equipe-titulo">Feedbacks</h2>
-    <p class="equipe-intro">Deixe aqui a sua opinião, dúvida ou sugestão para a nossa equipe!</p>
-
-    <form method="post" action="{% url 'sobre_nos' %}" class="equipe-form">
-        {% csrf_token %}
-        <label for="mensagem" class="equipe-sr">Sua mensagem</label>
-        <textarea name="mensagem" id="mensagem" rows="6" class="form-control" placeholder="Escreva aqui sua dúvida, sugestão, pedido, etc..." required></textarea>
-        <button type="submit" class="equipe-btn equipe-btn--cheio equipe-form__enviar">Enviar</button>
-    </form>
-
-    <h3 class="equipe-feedback__subtitulo">Opiniões e feedbacks enviados</h3>
-    <div class="feedback-list">
-        {% for fb in feedbacks %}
-            <div class="feedback-item">
-                <div class="feedback-header">
-                    <strong>
-                        {% if fb.usuario %}
-                            {{ fb.usuario.username }}
-                        {% else %}
-                            Anônimo
-                        {% endif %}
-                    </strong>
-                    <span class="feedback-date">{{ fb.data_criacao|date:"d/m/Y H:i" }}</span>
+        <ul class="fale-time__grade">
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/beatriz-vieira.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Beatriz Vieira</strong>
+                    <a class="integrante__email" href="mailto:bvot@cesar.school">bvot@cesar.school</a>
                 </div>
-                <p class="feedback-text">{{ fb.mensagem }}</p>
-            </div>
-        {% empty %}
-            <p class="equipe-intro">Ainda não há feedbacks. Seja o primeiro a deixar o seu!</p>
-        {% endfor %}
-    </div>
-</section>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/isabel-lucena.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Isabel Lucena</strong>
+                    <a class="integrante__email" href="mailto:ial2@cesar.school">ial2@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/bryan-martins.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Bryan Martins</strong>
+                    <a class="integrante__email" href="mailto:bmp@cesar.school">bmp@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/joao-henrique.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">João Henrique</strong>
+                    <a class="integrante__email" href="mailto:jhmra@cesar.school">jhmra@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/gabriella-lima.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Gabriella Lima</strong>
+                    <a class="integrante__email" href="mailto:gla3@cesar.school">gla3@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/bianca-avila.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Design</span>
+                    <strong class="integrante__nome">Bianca Ávila</strong>
+                    <a class="integrante__email" href="mailto:bgap@cesar.school">bgap@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/gustavo-cavalcanti.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Gustavo Cavalcanti</strong>
+                    <a class="integrante__email" href="mailto:gcnf@cesar.school">gcnf@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/gabriela-cardoso.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Design</span>
+                    <strong class="integrante__nome">Gabriela Cardoso</strong>
+                    <a class="integrante__email" href="mailto:gsac@cesar.school">gsac@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/heitor-villa-chan.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Ciências da Computação</span>
+                    <strong class="integrante__nome">Heitor Villa-chan</strong>
+                    <a class="integrante__email" href="mailto:hvccp@cesar.school">hvccp@cesar.school</a>
+                </div>
+            </li>
+            <li class="integrante">
+                <img src="{% static 'assets_brian/fale conosco/web/sophia-coutinho.png' %}" alt="" width="92" height="92" loading="lazy">
+                <div class="integrante__card">
+                    <span class="integrante__curso">Design</span>
+                    <strong class="integrante__nome">Sophia Coutinho</strong>
+                    <a class="integrante__email" href="mailto:scl2@cesar.school">scl2@cesar.school</a>
+                </div>
+            </li>
+        </ul>
+    </section>
 
-<!-- ========== FINAL ========== -->
-<section class="equipe-final">
-    <h2 class="equipe-titulo">Veja o nosso projeto!</h2>
-    <p class="equipe-intro">
-        Fornecemos um chat de IA contextualizado com os seus serviços, métricas, orçamentos
-        e produtos. Tudo isso disponível para seu potencial cliente entender melhor a
-        proposta de valor da sua empresa.
-    </p>
-    <div class="equipe-final__botoes">
-        <a href="{% url 'ia_chat' %}" class="equipe-btn equipe-btn--cheio">Teste o BRIAN</a>
-        <a href="https://www.bzutech.com.br/" class="equipe-btn equipe-btn--contorno" target="_blank" rel="noopener">Site da Bzu</a>
-    </div>
-</section>
+    <!-- feedback-section -->
+    <section class="fale-feedback" id="feedback">
+        <span class="fale-blob fale-blob--feedback" aria-hidden="true"></span>
+
+        <h2 class="text-h3 fale-feedback__titulo">Ajude o BRIAN com sua <span class="destaque">opinião</span></h2>
+
+        <div class="fale-feedback__conteudo">
+            <p class="body-md fale-feedback__texto">
+                Esse é um projeto acadêmico e nossa equipe apreciaria muito o seu feedback,
+                elogios ou pontos de melhoria para o BRIAN. Dessa forma, poderíamos compreender
+                o que poderia ser melhor no nosso projeto.
+            </p>
+
+            <form method="post" action="{% url 'sobre_nos' %}" class="fale-form">
+                {% csrf_token %}
+                <div class="campo-texto">
+                    <label for="mensagem" class="campo-texto__label">Feedbacks:</label>
+                    <textarea name="mensagem" id="mensagem" class="campo-texto__area"
+                              placeholder="Escreva aqui..." maxlength="500" required
+                              aria-describedby="mensagem-contador"></textarea>
+                    <span class="campo-texto__contador" id="mensagem-contador" aria-live="polite">0/500</span>
+                </div>
+                <button type="submit" class="button button--primary fale-form__enviar">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- cta-section -->
+    <section class="fale-cta">
+        <div class="fale-cta__texto">
+            <h2 class="text-h3">Conheça o nosso projeto</h2>
+            <p class="body-md">
+                Um chat bot com IA capaz de informar o usuário acerca dos seus serviços
+                de uma forma personalizada ao nível de conhecimento de cada um.
+            </p>
+        </div>
+        <div class="fale-cta__botoes">
+            <a href="{% url 'sobre_empresa' %}" class="button button--outline">Sobre a Bzu Tech</a>
+            <a href="{% url 'ia_chat' %}" class="button button--primary">Fale com BRIAN</a>
+        </div>
+    </section>
+
+</div>
 
 <style>
-    /* Usa as variáveis do style.css (corese fontes já vêm de lá) */
+    .fale { position: relative; }
+    .fale .destaque { color: var(--orange-500); }
 
-    /* ---------- Títulos e textos ---------- */
-    .equipe-titulo {
-        color: var(--laranja-700);
-        margin-bottom: 12px;
-    }
-
-    .equipe-intro {
-        max-width: 70ch;
-        color: var(--text-secondary);
-        line-height: var(--lh-body);
-    }
-
-    .equipe-sr {
+    /* ---------- Formas decorativas (orange-50) ---------- */
+    .fale-blob {
         position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        white-space: nowrap;
+        z-index: 0;
+        aspect-ratio: 1;
+        background: var(--orange-50);
+        pointer-events: none;
+    }
+    .fale-blob--hero {               /* 346px, canto reto embaixo à direita; cobre a foto e invade a faixa escura */
+        top: 556px;
+        right: 0;
+        width: var(--blob-hero, 346px);
+        border-radius: 50% 50% 0 50%;
+    }
+    .fale-blob--time {               /* 312px, canto reto embaixo à esquerda; por cima da faixa escura */
+        top: 903px;
+        left: 0;
+        width: var(--blob-time, 312px);
+        border-radius: 50% 50% 50% 0;
+    }
+    .fale-blob--feedback {           /* 493px, canto reto embaixo à direita; atrás do formulário */
+        top: 332px;
+        right: 0;
+        width: var(--blob-feedback, 493px);
+        border-radius: 50% 50% 0 50%;
     }
 
-    /* ---------- Topo ---------- */
-    .equipe-topo {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 48px;
-    }
+    /* Ordem das camadas igual ao Figma */
+    .fale-hero { z-index: 2; }
+    .fale-time { z-index: 1; }
 
-    .equipe-topo__texto h1 {
-        color: var(--text-primary);
-        margin-bottom: 16px;
-    }
-
-    .equipe-topo__texto p {
-        color: var(--text-secondary);
-        max-width: 50ch;
-    }
-
-    /* Foto do grupo (a imagem cobre o ícone) */
-    .equipe-topo__midia {
+    /* ---------- Hero ---------- */
+    .fale-hero {
         position: relative;
-        overflow: hidden;
         display: flex;
         align-items: center;
-        justify-content: center;
-        aspect-ratio: 16 / 10;
-        background: var(--laranja-500);
-        border-radius: var(--radius);
+        justify-content: space-between;
+        gap: 40px;
+        padding: 100px var(--pad-x);
     }
-
-    .equipe-topo__midia img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: var(--radius);
-    }
-
-    .equipe-topo__icone {
-        width: 34%;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 6;
-        stroke-linecap: round;
-    }
-
-    /* ---------- Membros ---------- */
-    .equipe-membros {
-        position: relative;
-        margin-top: 120px;
-    }
-
-    .equipe-membros > *:not(.equipe-circulo) {
+    .fale-hero__texto {
         position: relative;
         z-index: 1;
-    }
-
-    /* Círculos decorativos do fundo */
-    .equipe-circulo {
-        position: absolute;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        z-index: 0;
-    }
-
-    .equipe-circulo--rosa {
-        right: -12%;
-        top: -60px;
-        width: 620px;
-        background: var(--laranja-100);
-        opacity: 0.8;
-    }
-
-    .equipe-circulo--roxo {
-        left: -8%;
-        bottom: -80px;
-        width: 280px;
-        background: var(--roxo-200);
-    }
-
-
-    .membros-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 32px;
-    }
-
-    .membro {
-        background: var(--bg-body);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
-        overflow: hidden;
-        transition: var(--transition);
-    }
-
-    .membro:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateY(-4px);
-    }
-
-    /* Área da foto: mostra as iniciais até colocarem as fotos */
-    .membro__foto {
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        aspect-ratio: 16 / 9; /* para fotos quadradas, troque por 1 / 1 */
-        color: #fff;
-        font-family: var(--font-display);
-        font-size: 40px;
-        letter-spacing: 2px;
-    }
-
-    .membro__foto--laranja { background: var(--laranja-500); }
-    .membro__foto--roxo { background: var(--roxo-600); }
-
-    /* A foto fica por cima das iniciais */
-    .membro__foto img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top; /* mantém o rosto visível */
-    }
-
-    .membro__corpo {
-        padding: 16px 20px 20px;
-    }
-
-    .membro__curso {
-        display: block;
-        font-family: var(--font-caption);
-        font-size: 13px;
-        color: var(--laranja-500);
-        margin-bottom: 4px;
-    }
-
-    .membro__corpo h3 {
-        font-size: var(--fs-h4);
-        color: var(--text-primary);
-        margin-bottom: 6px;
-    }
-
-    .membro__corpo a {
-        font-size: var(--fs-body-sm);
-        color: var(--text-muted);
-        text-decoration: none;
-        word-break: break-all;
-    }
-
-    .membro__corpo a:hover {
-        color: var(--link);
-        text-decoration: underline;
-    }
-
-    /* ---------- Feedbacks ---------- */
-    .equipe-feedback {
-        margin-top: 140px;
-    }
-
-    .equipe-form {
+        flex: 0 1 758px;
         display: flex;
         flex-direction: column;
         gap: 12px;
-        max-width: 420px;
-        margin: 32px auto 0;
+    }
+    .fale-hero__texto h1 { color: var(--grey-900); }
+    .fale-hero__texto p { color: var(--grey-625); }
+    .fale-hero__foto {
+        flex-shrink: 0;
+        display: block;
+        width: 577px;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        border-radius: 50% 50% 50% 0;
     }
 
-    .equipe-form textarea {
-        min-height: 160px;
+    /* ---------- Integrantes ---------- */
+    .fale-time {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 72px;
+        padding: 100px var(--pad-x);
+        background: var(--grey-900);
+        border-radius: var(--radius);
     }
-
-    .equipe-form__enviar {
+    .fale-time__titulo,
+    .fale-time__grade {
+        position: relative;
+        z-index: 1;
         width: 100%;
-        cursor: pointer;
+        max-width: 862px;
     }
-
-    .equipe-feedback__subtitulo {
-        margin-top: 56px;
-        font-size: var(--fs-h4);
-        color: var(--text-primary);
+    .fale-time__titulo { color: var(--grey-100); }
+    .fale-time__grade {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 91px;
+        row-gap: 65px;
     }
-
-    /* ---------- Final ---------- */
-    .equipe-final {
-        margin-top: 140px;
+    .integrante {
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
+    .integrante img {
+        flex-shrink: 0;
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+    }
+    /* Profile (Figma): 252×92, contorno de 1px POR FORA → 254×94 com margem -1px */
+    .integrante__card {
+        flex-shrink: 0;
+        width: 254px;
+        height: 94px;
+        margin: -1px;
+        padding: 15px;                 /* 16px do Figma menos o contorno */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: var(--orange-50);
+        border: 1px solid var(--orange-100);
+        border-radius: 49px 49px 49px 0;
+    }
+    .integrante__curso {
+        font-family: var(--font-caption);
+        font-size: var(--fs-caption);
+        line-height: var(--lh-caption);
+        color: var(--orange-500);
+    }
+    .integrante__nome {
+        font-family: var(--font-display);
+        font-size: 20px;
+        line-height: normal;
+        font-weight: 400;
+        color: var(--grey-775);
+    }
+    .integrante__email {
+        font-family: var(--font-body);
+        font-size: var(--fs-body-sm);
+        line-height: var(--lh-body-sm);
+        color: var(--grey-625);
+        text-decoration: none;
+    }
+    .integrante__email:hover { color: var(--orange-500); text-decoration: underline; }
+    .integrante__email:focus-visible { outline: 2px solid var(--orange-500); outline-offset: 2px; }
 
-    .equipe-final__botoes {
+    /* ---------- Feedback ---------- */
+    .fale-feedback {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 72px;
+        padding: 100px var(--pad-x);
+    }
+    .fale-feedback__titulo {
+        position: relative;
+        z-index: 1;
+        max-width: 868px;
+        text-align: center;
+        color: var(--grey-900);
+    }
+    .fale-feedback__conteudo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 868px;
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-top: 32px;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .fale-feedback__texto { flex: 1 1 424px; max-width: 424px; color: var(--grey-775); }
+    .fale-form {
+        flex: 1 1 424px;
+        max-width: 424px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    /* ---------- Botões ---------- */
-    .equipe-btn {
-        display: inline-block;
-        min-width: 150px;
-        padding: 11px 24px;
-        font-family: var(--font-button);
-        font-size: var(--btn-fs);
-        font-weight: 700;
+    /* Text Area (Styleguide): label, caixa com contorno interno de 1px, contador */
+    .campo-texto { display: flex; flex-direction: column; gap: 12px; }
+    .campo-texto__label {
+        font-family: var(--font-body);
+        font-size: var(--fs-body-md);
+        line-height: var(--lh-body-md);
+        color: var(--grey-775);
+    }
+    .campo-texto__area {
+        display: block;
+        width: 100%;
+        height: 263px;
+        padding: 8px;
+        resize: vertical;
+        background: var(--white);
+        border: 1px solid var(--orange-100);
+        border-radius: 2px;
+        font-family: var(--font-body);
+        font-size: var(--fs-body-md);
+        line-height: var(--lh-body-md);
+        color: var(--grey-775);
+    }
+    .campo-texto__area::placeholder { color: var(--grey-375); }
+    .campo-texto__area:focus { outline: none; border-color: var(--orange-500); }
+    .campo-texto__contador {
+        height: 20px;
+        text-align: right;
+        font-family: var(--font-body);
+        font-size: var(--fs-body-md);
+        line-height: var(--lh-body-md);
+        color: var(--grey-625);
+    }
+    /* Botão com contorno por fora: ocupa 1px além da caixa em cada lado */
+    .fale-form__enviar { width: calc(100% + 2px); margin: -1px; }
+
+    /* ---------- CTA ---------- */
+    .fale-cta {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        padding: 100px var(--pad-x);
+    }
+    .fale-cta__texto {
+        position: relative;
+        z-index: 1;
+        max-width: 866px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         text-align: center;
-        text-decoration: none;
-        transition: var(--transition);
+    }
+    .fale-cta__texto h2 { color: var(--grey-900); }
+    .fale-cta__texto p { color: var(--grey-625); }
+    .fale-cta__botoes {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;                     /* Figma: 20px entre as caixas, menos o contorno por fora */
     }
 
-    .equipe-btn--cheio {
-        background: var(--brand);
-        border: 2px solid var(--brand);
-        border-radius: var(--btn-radius-primary);
-        color: #fff;
+    /* ---------- Telas menores ---------- */
+    @media (max-width: 1100px) {
+        .fale-hero { flex-direction: column; align-items: flex-start; }
+        .fale-hero__foto { align-self: center; width: min(577px, 100%); }
+        .fale-blob--hero { top: auto; bottom: -120px; }
     }
-
-    .equipe-btn--cheio:hover {
-        background: var(--brand-hover);
-        border-color: var(--brand-hover);
+    @media (max-width: 960px) {
+        .fale { --blob-hero: 240px; --blob-time: 200px; --blob-feedback: 300px; }
+        .fale-time__grade { grid-template-columns: minmax(0, 1fr); justify-items: center; row-gap: 32px; }
+        .fale-blob--time { top: auto; bottom: -100px; }
+        .fale-feedback__conteudo { flex-direction: column; align-items: stretch; }
+        .fale-feedback__texto, .fale-form { max-width: none; flex-basis: auto; }
     }
-
-    .equipe-btn--contorno {
-        background: transparent;
-        border: 2px solid var(--roxo-600);
-        border-radius: var(--btn-radius-secondary);
-        color: var(--roxo-600);
-    }
-
-    .equipe-btn--contorno:hover {
-        background: var(--roxo-600);
-        color: #fff;
-    }
-
-    /* ---------- Tablet ---------- */
-    @media (max-width: 900px) {
-        .equipe-topo { grid-template-columns: 1fr; }
-        .membros-grid { grid-template-columns: repeat(2, 1fr); }
-        .equipe-circulo--rosa { width: 400px; }
-    }
-
-    /* ---------- Celular ---------- */
     @media (max-width: 640px) {
-        .membros-grid { grid-template-columns: 1fr; }
-        .equipe-membros { margin-top: 80px; }
-        .equipe-feedback, .equipe-final { margin-top: 90px; }
-        .equipe-circulo--roxo { width: 160px; }
+        .fale { --blob-hero: 160px; --blob-time: 140px; --blob-feedback: 200px; }
+        .fale-hero, .fale-time, .fale-feedback, .fale-cta { padding-top: 64px; padding-bottom: 64px; }
+        .fale-time, .fale-feedback { gap: 48px; }
+        .integrante__card { width: auto; flex: 1 1 auto; min-width: 0; }
+        .integrante__email { overflow-wrap: anywhere; }
     }
 </style>
+
+<script>
+    // Contador de caracteres do campo de feedback (0/500)
+    (function () {
+        const area = document.getElementById('mensagem');
+        const contador = document.getElementById('mensagem-contador');
+        if (!area || !contador) return;
+        const max = area.maxLength;
+        const atualizar = () => { contador.textContent = area.value.length + '/' + max; };
+        area.addEventListener('input', atualizar);
+        atualizar();
+    })();
+</script>
 
 {% endblock %}

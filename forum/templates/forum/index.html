@@ -1,385 +1,249 @@
 {% extends 'forum/base.html' %}
 {% load static %}
 
-{% block title %}Início - BrIAn{% endblock %}
+{% block title %}Início - BRIAN{% endblock %}
+{% block container_class %}container--full{% endblock %}
 
 {% block content %}
 
-<section class="brian-hero">
+<!-- Figma: Protótipo final / inicio -->
+<div class="inicio">
 
-    <div class="brian-hero-intro">
-        <h2>Detalhe seu serviço em um chat com IA</h2>
-        <p>
-            Fornecemos um chat de IA contextualizado com os seus serviços,
-            métricas, orçamentos e produtos. Tudo isso disponível para seu
-            potencial cliente entender melhor a proposta de valor da sua empresa.
-        </p>
-    </div>
+    <!-- hero-section -->
+    <section class="inicio-hero">
+        <h1 class="inicio-hero__titulo">
+            Transformando o <span class="destaque">complexo</span>
+            em <span class="destaque">simples</span> com IA
+        </h1>
 
-    <div class="brian-chat-animation">
+        <!-- brian-chat-hero: vídeo em loop (o PNG é o quadro inicial / fallback) -->
+        <video class="inicio-hero__preview"
+               autoplay muted loop playsinline preload="metadata"
+               poster="{% static 'assets_brian/img/brian-chat-hero.png' %}"
+               width="868" height="488"
+               aria-label="Demonstração do chat do BRIAN">
+            <source src="{% static 'assets_brian/brian-chat-hero.mp4' %}" type="video/mp4">
+        </video>
+    </section>
 
-        <div class="floating-bubble bubble-left">
-            Tenho dúvidas sobre o serviço.
+    <!-- Seu serviço em um chat com IA -->
+    <section class="inicio-servico">
+        <span class="inicio-blob inicio-blob--servico" aria-hidden="true"></span>
+
+        <div class="inicio-servico__intro">
+            <h2 class="text-h3">Seu serviço em um chat com IA</h2>
+            <p class="body-md">
+                Fornecemos um chat de IA contextualizado com os seus serviços, métricas,
+                orçamentos e produtos. Tudo isso disponível para seu potencial cliente
+                entender melhor a proposta de valor da sua empresa.
+            </p>
         </div>
 
-        <div class="floating-bubble bubble-right">
-            Quero saber mais sobre o hardware.
+        <div class="inicio-servico__cards">
+            <article class="inicio-card inicio-card--largo">
+                <div class="inicio-card__conteudo">
+                    <h3 class="inicio-card__titulo">
+                        <img src="{% static 'assets_brian/img/icon-add.svg' %}" alt="" width="32" height="32">
+                        Adaptabilidade
+                    </h3>
+                    <p class="body-md">
+                        Sua proposta de valor pode ser compreendida por pessoas de vários setores.
+                        Uma pessoa técnica ou não poderá compreender melhor seus serviços conforme
+                        o conhecimento de cada um.
+                    </p>
+                </div>
+            </article>
+
+            <article class="inicio-card inicio-card--redondo">
+                <div class="inicio-card__conteudo">
+                    <h3 class="inicio-card__titulo">
+                        <img src="{% static 'assets_brian/img/icon-add.svg' %}" alt="" width="32" height="32">
+                        Conversões
+                    </h3>
+                    <p class="body-md">
+                        Essa acessibilidade aumenta a conversão dessas pessoas em clientes reais.
+                    </p>
+                </div>
+            </article>
         </div>
+    </section>
 
-        <div class="floating-bubble bubble-left-second">
-            Como funciona a solução?
+    <!-- Chamada final -->
+    <section class="inicio-cta">
+        <span class="inicio-blob inicio-blob--cta" aria-hidden="true"></span>
+
+        <h2 class="text-h3">Você pergunta e o BRIAN responde com versatilidade</h2>
+
+        <div class="inicio-cta__botoes">
+            <a href="{% url 'sobre_empresa' %}" class="button button--outline">Sobre a Bzu Tech</a>
+            <a href="{% url 'ia_chat' %}" class="button button--primary">Fale com BRIAN</a>
         </div>
+    </section>
 
-    </div>
-
-    <div class="brian-hero-final">
-        <h2>
-            O BRIAN responde com
-            <span class="changing-words">
-                <span>versatilidade.</span>
-                <span>conformidade.</span>
-                <span>profundidade.</span>
-            </span>
-        </h2>
-
-        <div class="brian-hero-buttons">
-            <a href="{% url 'ia_chat' %}" class="brian-btn-primary">
-                Fale com BRIAN
-            </a>
-
-            <a href="{% url 'sobre_nos' %}" class="brian-btn-secondary">
-                Fale Conosco
-            </a>
-        </div>
-    </div>
-
-</section>
+</div>
 
 <style>
-    /* ---------- Cores (modo claro, como no Figma) ---------- */
-    .brian-hero {
-        --brian-fundo: #f6f0f8;
-        --brian-titulo: #b5381c;
-        --brian-texto: #4a4453;
-        --brian-frase: #1d1a22;
-        --brian-rosa: #f6cfc5;
-        --brian-rosa-texto: #b5381c;
-        --brian-roxo: #ad7fb3;
-        --brian-roxo-texto: #4e0f5e;
-        --brian-laranja: #e04e22;
-        --brian-laranja-hover: #c7411a;
-        --brian-contorno: #5b1a6b;
+    /* ---------- Página ---------- */
+    .inicio { position: relative; }
 
-        background: var(--brian-fundo);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        padding: 40px;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
+    /* Formas decorativas (orange-50), cantos retos como no Figma */
+    .inicio-blob {
+        position: absolute;
+        z-index: 0;
+        background: var(--orange-50);
+        pointer-events: none;
+    }
+    .inicio-blob--servico {          /* 355px, canto reto embaixo à direita, por cima da faixa escura */
+        top: -165px;
+        right: 0;
+        width: var(--blob-servico, 355px);
+        aspect-ratio: 1;
+        border-radius: 50% 50% 0 50%;
+    }
+    .inicio-blob--cta {              /* 328px, canto reto embaixo à esquerda, invade o rodapé */
+        top: 106px;
+        left: 0;
+        width: var(--blob-cta, 328px);
+        aspect-ratio: 1;
+        border-radius: 50% 50% 50% 0;
     }
 
-    /* ---------- Introdução ---------- */
-    .brian-hero-intro h2 {
-        color: var(--brian-titulo);
-        font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        margin-bottom: 12px;
-    }
-
-    .brian-hero-intro p {
-        color: var(--brian-texto);
-        line-height: 1.6;
-        max-width: 70ch;
-    }
-
-    /* ---------- Área dos balões: um embaixo do outro ---------- */
-    .brian-chat-animation {
+    /* ---------- Hero ---------- */
+    .inicio-hero {
+        position: relative;
         display: flex;
         flex-direction: column;
-        gap: 40px;          /* espaço igual entre os balões */
-        margin-top: 40px;
-        padding: 0;
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-
-    .floating-bubble {
-        width: clamp(180px, 28vw, 260px);
-        aspect-ratio: 1 / 1;
-        display: flex;
         align-items: center;
-        padding: 0 32px;
-        font-size: clamp(1rem, 2vw, 1.3rem);
-        font-weight: 700;
-        line-height: 1.35;
-        opacity: 0;
-        transform: scale(0);
+        padding: 100px var(--pad-x);
     }
-
-    /* Bloco de texto dentro do balão (mantém os espaços entre as palavras) */
-    .floating-bubble .bolha-conteudo {
+    .inicio-hero__titulo {
+        position: relative;
+        z-index: 1;
+        max-width: 868px;
+        text-align: center;
+        color: var(--grey-900);
+    }
+    .inicio-hero__titulo .destaque { color: var(--orange-500); }
+    .inicio-hero__preview {
+        position: relative;
+        z-index: 1;
         display: block;
         width: 100%;
+        max-width: 868px;
+        height: auto;
+        aspect-ratio: 868 / 488;
+        object-fit: cover;
     }
 
-    /* Balões rosa: à esquerda, canto reto embaixo à esquerda */
-    .bubble-left,
-    .bubble-left-second {
-        align-self: flex-start;
-        background: var(--brian-rosa);
-        color: var(--brian-rosa-texto);
-        border-radius: 50% 50% 50% 0;
-        transform-origin: bottom left;
-        --desloc: 120%;
-    }
-
-    /* Balão roxo: à direita, canto reto embaixo à direita */
-    .bubble-right {
-        align-self: flex-end;
-        background: var(--brian-roxo);
-        color: var(--brian-roxo-texto);
-        border-radius: 50% 50% 0 50%;
-        transform-origin: bottom right;
-        --desloc: -120%;
-    }
-
-    /* Entrada: começa pequeno, deslocado, e cresce até o lugar */
-    .floating-bubble.is-entrando {
-        animation: bolha-entra 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
-    }
-
-    @keyframes bolha-entra {
-        0%   { opacity: 0; transform: translateX(var(--desloc)) scale(0.2); }
-        30%  { opacity: 1; }
-        100% { opacity: 1; transform: translateX(0) scale(1); }
-    }
-
-    /* Saída: encolhe e some */
-    .floating-bubble.is-saindo {
-        animation: bolha-sai 0.4s ease forwards;
-    }
-
-    @keyframes bolha-sai {
-        from { opacity: 1; transform: scale(1); }
-        to   { opacity: 0; transform: scale(0.6); }
-    }
-
-    /* Letras aparecendo uma a uma */
-    .floating-bubble .palavra {
-        white-space: nowrap;
-    }
-
-    .floating-bubble .letra {
-        opacity: 0;
-        animation: letra-aparece 0.2s ease forwards;
-        animation-delay: calc(350ms + var(--i) * 30ms);
-    }
-
-    @keyframes letra-aparece {
-        to { opacity: 1; }
-    }
-
-    /* ---------- Frase com palavra trocando ---------- */
-    .brian-hero-final {
-        margin-top: 24px;
-        padding: 40px 0 8px;
-        text-align: center;
-    }
-
-    .brian-hero-final h2 {
-        color: var(--brian-frase);
-        font-size: clamp(1.4rem, 3.2vw, 2.1rem);
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        line-height: 1.3;
-    }
-
-    .changing-words {
-        display: inline-grid;
-        justify-items: start;
-        vertical-align: bottom;
-        overflow: hidden;
-        text-align: left;
-    }
-
-    .changing-words span {
-        grid-area: 1 / 1;
-        transform: translateY(-100%);
-        opacity: 0;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    .changing-words span:nth-child(odd)  { color: var(--brian-laranja); }
-    .changing-words span:nth-child(even) { color: var(--brian-roxo-texto); }
-
-    .changing-words span.is-ativa {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .changing-words span.is-saindo {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    /* ---------- Botões ---------- */
-    .brian-hero-buttons {
+    /* ---------- Seu serviço ---------- */
+    .inicio-servico {
+        position: relative;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 72px;
+        padding: 100px var(--pad-x);
+        background: var(--grey-900);
+        border-radius: var(--radius);
+    }
+    .inicio-servico__intro {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 868px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .inicio-servico__intro h2 { color: var(--grey-100); }
+    .inicio-servico__intro p { color: var(--grey-375); }
+
+    .inicio-servico__cards {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+    .inicio-card {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        background: var(--orange-500);
+        color: var(--white);
+    }
+    .inicio-card--largo {
+        width: 551.5px;
+        min-height: 267px;
+        padding: 68px 69px 75px 68px;
+        border-radius: 133.5px 133.5px 133.5px 0; /* Figma: 160/402/402/0, que o Figma limita a 133,5px (metade da altura) */
+    }
+    .inicio-card--redondo {
+        width: 267px;
+        height: 267px;
+        padding: 72px 35px 71px 46px;
+        border-radius: 50% 50% 0 50%;          /* Figma: 402px, limitado à metade do lado */
+    }
+    .inicio-card__conteudo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .inicio-card--largo .inicio-card__conteudo { align-items: center; }
+    .inicio-card--redondo .inicio-card__conteudo { align-items: flex-start; }
+    .inicio-card__titulo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-heading);
+        font-size: var(--fs-h6);
+        line-height: var(--lh-h6);
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--white);
+    }
+    .inicio-card__titulo img { width: 32px; height: 32px; flex-shrink: 0; }
+    .inicio-card p { color: var(--white); width: 100%; }
+
+    /* ---------- Chamada final ---------- */
+    .inicio-cta {
+        position: relative;
+        z-index: 1;                    /* a forma da esquerda passa por cima do rodapé */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        padding: 100px var(--pad-x);
+    }
+    .inicio-cta h2 {
+        position: relative;
+        z-index: 1;
+        max-width: 867px;
+        text-align: center;
+        color: var(--grey-900);
+    }
+    .inicio-cta__botoes {
+        position: relative;
+        z-index: 1;
+        display: flex;
         flex-wrap: wrap;
-        gap: 16px;
-        margin-top: 32px;
+        justify-content: center;
+        gap: 18px;                     /* Figma: 20px entre as caixas, menos o contorno de 1px por fora de cada botão */
     }
 
-    .brian-btn-primary,
-    .brian-btn-secondary {
-        display: inline-block;
-        min-width: 150px;
-        padding: 12px 24px;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition);
+    /* ---------- Telas menores ---------- */
+    @media (max-width: 960px) {
+        .inicio { --blob-servico: 240px; --blob-cta: 220px; }
+        .inicio-servico__cards { flex-direction: column; gap: 32px; width: 100%; }
+        .inicio-card--largo { width: 100%; max-width: 551.5px; padding: 56px 48px; }
     }
-
-    .brian-btn-primary {
-        background: var(--brian-laranja);
-        border: 2px solid var(--brian-laranja);
-        color: #ffffff;
-    }
-
-    .brian-btn-primary:hover {
-        background: var(--brian-laranja-hover);
-        border-color: var(--brian-laranja-hover);
-    }
-
-    .brian-btn-secondary {
-        background: transparent;
-        border: 2px solid var(--brian-contorno);
-        color: var(--brian-contorno);
-    }
-
-    .brian-btn-secondary:hover {
-        background: var(--brian-contorno);
-        color: var(--brian-fundo);
-    }
-
-    /* ---------- Celular ---------- */
-    @media (max-width: 700px) {
-        .brian-hero { padding: 28px 20px; }
-        .brian-chat-animation { padding: 0; gap: 28px; }
-        .floating-bubble { padding: 0 22px; }
+    @media (max-width: 640px) {
+        .inicio { --blob-servico: 160px; --blob-cta: 160px; }
+        .inicio-hero, .inicio-servico, .inicio-cta { padding-top: 64px; padding-bottom: 64px; }
+        .inicio-servico { gap: 48px; }
+        .inicio-blob--servico { top: -80px; }
+        .inicio-card--largo { padding: 48px 28px; }
     }
 </style>
-
-<script>
-(function () {
-    const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    /* ---------- Pop-up dos balões ---------- */
-    const bolhas = Array.from(document.querySelectorAll('.brian-chat-animation .floating-bubble'));
-
-    // Guarda o texto original de cada balão
-    bolhas.forEach((b) => {
-        b.dataset.texto = b.textContent.trim();
-        b.textContent = '';
-    });
-
-    // Quebra o texto em letras, agrupadas por palavra
-    function prepararTexto(bolha) {
-        bolha.textContent = '';
-
-        // Um único elemento dentro do balão, para os espaços não sumirem
-        const conteudo = document.createElement('span');
-        conteudo.className = 'bolha-conteudo';
-        bolha.appendChild(conteudo);
-
-        const palavras = bolha.dataset.texto.split(' ');
-        let i = 0;
-
-        palavras.forEach((palavra, indice) => {
-            const spanPalavra = document.createElement('span');
-            spanPalavra.className = 'palavra';
-
-            for (const caractere of palavra) {
-                const letra = document.createElement('span');
-                letra.className = 'letra';
-                letra.style.setProperty('--i', i++);
-                letra.textContent = caractere;
-                spanPalavra.appendChild(letra);
-            }
-
-            conteudo.appendChild(spanPalavra);
-            if (indice < palavras.length - 1) {
-                conteudo.appendChild(document.createTextNode(' '));
-                i++;
-            }
-        });
-
-        return i;
-    }
-
-    async function rodarBolhas() {
-        if (!bolhas.length) return;
-
-        while (true) {
-            // Mostra um balão de cada vez, e eles ficam na tela
-            for (const bolha of bolhas) {
-                const totalLetras = prepararTexto(bolha);
-
-                bolha.classList.remove('is-saindo');
-                void bolha.offsetWidth;
-                bolha.classList.add('is-entrando');
-
-                // tempo de crescer + digitar + pequena pausa antes do próximo
-                await esperar(Math.max(600, totalLetras * 30 - 200));
-            }
-
-            // Com todos na tela, espera um pouco
-            await esperar(2500);
-
-            // Todos somem juntos
-            bolhas.forEach((b) => {
-                b.classList.remove('is-entrando');
-                b.classList.add('is-saindo');
-            });
-            await esperar(600);
-            bolhas.forEach((b) => b.classList.remove('is-saindo'));
-        }
-    }
-
-    const area = document.querySelector('.brian-chat-animation');
-    if (area) {
-        const observador = new IntersectionObserver((entradas) => {
-            if (entradas[0].isIntersecting) {
-                observador.disconnect();
-                rodarBolhas();
-            }
-        }, { threshold: 0.2 });
-        observador.observe(area);
-    }
-
-    /* ---------- Palavra trocando ---------- */
-    const palavras = document.querySelectorAll('.changing-words span');
-
-    if (palavras.length) {
-        let atual = 0;
-        palavras[0].classList.add('is-ativa');
-
-        setInterval(() => {
-            const saindo = palavras[atual];
-            atual = (atual + 1) % palavras.length;
-            const entrando = palavras[atual];
-
-            saindo.classList.remove('is-ativa');
-            saindo.classList.add('is-saindo');
-            entrando.classList.add('is-ativa');
-
-            setTimeout(() => saindo.classList.remove('is-saindo'), 550);
-        }, 2500);
-    }
-})();
-</script>
 
 {% endblock %}
