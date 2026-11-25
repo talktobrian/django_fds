@@ -1,644 +1,452 @@
 {% extends 'forum/base.html' %}
 {% load static %}
 
-{% block title %}Sobre a Empresa - BZU Tech{% endblock %}
+{% block title %}Sobre a Bzu - BRIAN{% endblock %}
+{% block container_class %}container--full{% endblock %}
 
 {% block content %}
 
-<!-- ========== TOPO ========== -->
-<section class="sobre-topo">
-    <div class="sobre-topo__texto">
-        <h1>A empresa que faz isso tudo acontecer</h1>
-        <p>
-            Fornecemos soluções com hardware e software personalizados para coleta
-            de dados e para facilitar a sua tomada de decisão.
-        </p>
-    </div>
+<!-- Figma: Protótipo final / sobre a bzu (126:3440) -->
+<div class="bzu">
 
-    <!-- Quando tiverem a imagem/vídeo, troque este bloco por uma tag img usando static -->
-    <div class="sobre-topo__midia" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="sobre-topo__icone">
-            <circle cx="60" cy="72" r="8" />
-            <path d="M40 52a28 28 0 0 1 40 0" />
-            <path d="M28 40a45 45 0 0 1 64 0" />
-            <path d="M16 28a62 62 0 0 1 88 0" />
-        </svg>
-    </div>
-</section>
-
-<!-- ========== COMO A BZU PODE TE AJUDAR ========== -->
-<section class="sobre-ajuda">
-    <div class="sobre-ajuda__circulo" aria-hidden="true"></div>
-
-    <h2 class="sobre-titulo">Como a Bzu pode te ajudar?</h2>
-    <p class="sobre-intro">
-        A Bzu cria o aparelho que mede, conecta esse aparelho à internet e entrega os dados
-        numa plataforma própria, onde você acompanha tudo em gráficos e recebe alertas
-        quando algo sai do normal.
-    </p>
-
-    <div class="sobre-cards">
-        <article class="sobre-card">
-            <div class="sobre-card__imagem sobre-card__imagem--laranja" aria-hidden="true">
-                <svg viewBox="0 0 48 48"><rect x="8" y="12" width="14" height="24" rx="2"/><rect x="26" y="8" width="14" height="32" rx="2"/></svg>
-            </div>
-            <div class="sobre-card__corpo">
-                <span class="sobre-card__etiqueta">unificação</span>
-                <h3>Fornecedor único</h3>
-                <p>A Bzu cuida tanto do hardware quanto do software que você precisa.</p>
-            </div>
-        </article>
-
-        <article class="sobre-card">
-            <div class="sobre-card__imagem sobre-card__imagem--roxo" aria-hidden="true">
-                <svg viewBox="0 0 48 48"><polyline points="6,34 16,24 24,30 34,16 42,22"/><line x1="6" y1="40" x2="42" y2="40"/></svg>
-            </div>
-            <div class="sobre-card__corpo">
-                <span class="sobre-card__etiqueta">diferencial</span>
-                <h3>Dados em tempo real</h3>
-                <p>Na plataforma da Bzu você monta gráficos e alertas com as informações dos sensores.</p>
-            </div>
-        </article>
-
-        <article class="sobre-card">
-            <div class="sobre-card__imagem sobre-card__imagem--laranja" aria-hidden="true">
-                <svg viewBox="0 0 48 48"><rect x="12" y="12" width="24" height="24" rx="3"/><line x1="18" y1="6" x2="18" y2="12"/><line x1="30" y1="6" x2="30" y2="12"/><line x1="18" y1="36" x2="18" y2="42"/><line x1="30" y1="36" x2="30" y2="42"/></svg>
-            </div>
-            <div class="sobre-card__corpo">
-                <span class="sobre-card__etiqueta">personalização</span>
-                <h3>Hardware</h3>
-                <p>A Bzu pode desenvolver um hardware personalizado para a sua necessidade.</p>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- ========== CASOS REAIS (CARROSSEL) ========== -->
-<section class="sobre-casos">
-    <div class="sobre-casos__circulo" aria-hidden="true"></div>
-
-    <h2 class="sobre-titulo">Casos reais</h2>
-    <p class="sobre-intro">
-        Conheça como a Bzu aplica suas soluções na prática nestes projetos. Cada um exigiu
-        entender o problema daquele cliente para chegar à solução mais adequada.
-    </p>
-
-    <div class="carrossel" id="carrossel-casos">
-        <div class="carrossel__janela">
-            <div class="carrossel__trilho">
-
-                <article class="carrossel__slide">
-                    <div class="carrossel__imagem">
-                        <img src="{% static 'mdiasb.png' %}" alt="Logo da M. Dias Branco">
-                    </div>
-                    <div class="carrossel__texto">
-                        <h3>M. Dias Branco</h3>
-                        <p>
-                            Para fazer pães e massas, a massa precisa fermentar na temperatura e na
-                            umidade certas. A Bzu instalou sensores nessa etapa da fábrica, que
-                            acompanham essas condições o tempo todo. Assim, a equipe vê na hora se
-                            algo saiu do ponto, sem depender de alguém conferindo manualmente.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="carrossel__slide">
-                    <div class="carrossel__imagem">
-                        <img src="{% static 'lafepe.jpg' %}" alt="Logo do LAFEPE">
-                    </div>
-                    <div class="carrossel__texto">
-                        <h3>LAFEPE</h3>
-                        <p>
-                            O Laboratório Farmacêutico de Pernambuco guarda medicamentos e insumos
-                            que estragam se esquentarem. A Bzu colocou sensores nas câmaras frias,
-                            nos freezers e nas áreas de estoque, que registram sozinhos a temperatura
-                            e a umidade. Esse histórico ajuda o laboratório a provar, nas
-                            fiscalizações e auditorias, que tudo foi guardado do jeito certo.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="carrossel__slide">
-                    <div class="carrossel__imagem">
-                        <img src="{% static 'smartlet.jpg' %}" alt="Smartlet no Recife Antigo">
-                    </div>
-                    <div class="carrossel__texto">
-                        <h3>Smartlet</h3>
-                        <p>
-                            O Smartlet é um espaço público no Recife Antigo com Wi-Fi grátis, tomadas
-                            e energia solar. Com os sensores da Bzu, ele também passou a medir
-                            temperatura, qualidade do ar, chuva, gasto de energia e uso dos
-                            equipamentos. Um móvel de rua virou uma fonte de informações para ajudar
-                            a planejar a cidade.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="carrossel__slide">
-                    <div class="carrossel__imagem">
-                        <img src="{% static 'parlacom.png' %}" alt="Logo da Parlacom">
-                    </div>
-                    <div class="carrossel__texto">
-                        <h3>Parlacom</h3>
-                        <p>
-                            No Porto Digital, a Parlacom montou uma vitrine de tecnologias para
-                            cidades inteligentes. A Bzu levou o EP200, um aparelho que mede a
-                            qualidade do ar, como gás carbônico, poeira e outros gases, além de
-                            temperatura e umidade, e envia tudo em tempo real. Esse tipo de medição
-                            pode ajudar escolas, hospitais e escritórios a seguir a recomendação da
-                            ANVISA sobre o ar em ambientes com ar-condicionado.
-                        </p>
-                    </div>
-                </article>
-
-            </div>
+    <!-- hero-section -->
+    <section class="bzu-hero">
+        <span class="bzu-blob bzu-blob--hero" aria-hidden="true"></span>
+        <div class="bzu-hero__texto">
+            <h1>Quem é a <span class="destaque">Bzu</span> Tech?</h1>
+            <p class="body-md">
+                A Bzu é uma empresa de IoT que permite a coleta de dados operacionais
+                para otimizar a tomada de decisões das empresas.
+            </p>
         </div>
 
-        <div class="carrossel__controles">
-            <button type="button" class="carrossel__seta" data-direcao="-1" aria-label="Caso anterior">‹</button>
-            <div class="carrossel__pontos"></div>
-            <button type="button" class="carrossel__seta" data-direcao="1" aria-label="Próximo caso">›</button>
-        </div>
-    </div>
-</section>
+        <!-- bzu-sensor-hero: no Figma é um vídeo; aqui usamos o quadro estático exportado.
+             Para usar o vídeo, coloque bzu-sensor-hero.mp4 na mesma pasta e troque por <video>. -->
+        <img class="bzu-hero__midia"
+             src="{% static 'assets_brian/sobre a bzu/bzu-sensor-hero.png' %}"
+             alt="Ilustração do sensor da Bzu com conexão Wi-Fi, LoRa e LTE"
+             width="790" height="444">
+    </section>
 
-<!-- ========== FINAL ========== -->
-<section class="sobre-final">
-    <h2>
-        <span class="sobre-final__laranja">Quer entender melhor?</span>
-        <span class="sobre-final__roxo">Quer ver resultados de casos reais?</span>
-        <span class="sobre-final__laranja">Quer mais detalhes sobre nossos sensores?</span>
-    </h2>
-    <p>
-        Saiba disso tudo e mais um pouco conversando com o BRIAN, nosso assistente de IA com
-        todos os dados necessários para responder às suas perguntas onde e quando você quiser.
-    </p>
-    <div class="sobre-final__botoes">
-        <a href="{% url 'ia_chat' %}" class="sobre-btn sobre-btn--cheio">Fale com BRIAN</a>
-        <a href="https://www.bzutech.com.br/" class="sobre-btn sobre-btn--contorno" target="_blank" rel="noopener">Site da Bzu</a>
-    </div>
-</section>
+    <!-- services-section -->
+    <section class="bzu-servicos">
+        <span class="bzu-blob bzu-blob--servicos" aria-hidden="true"></span>
+        <div class="bzu-intro">
+            <h2 class="text-h3">Como a Bzu pode te ajudar?</h2>
+            <p class="body-md">
+                A Bzu cria o aparelho que mede, conecta esse aparelho à internet e entrega os dados
+                numa plataforma própria, onde você acompanha tudo em gráficos e recebe alertas
+                quando algo sai do normal.
+            </p>
+        </div>
+
+        <div class="bzu-chats">
+            <article class="bzu-chat">
+                <h3 class="text-h6">Dados em tempo real</h3>
+                <p class="body-md">Na plataforma da Bzu você monta gráficos e alertas com as informações dos sensores.</p>
+            </article>
+            <article class="bzu-chat bzu-chat--direita">
+                <h3 class="text-h6">Hardware</h3>
+                <p class="body-md">A Bzu pode desenvolver um hardware personalizado para a sua necessidade.</p>
+            </article>
+            <article class="bzu-chat">
+                <h3 class="text-h6">Fornecedor único</h3>
+                <p class="body-md">A Bzu cuida tanto do hardware quanto do software que você precisa.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- case-section -->
+    <section class="bzu-casos" aria-labelledby="bzu-casos-titulo">
+        <span class="bzu-blob bzu-blob--casos" aria-hidden="true"></span>
+        <div class="bzu-intro">
+            <h2 class="text-h3" id="bzu-casos-titulo">Casos reais de projetos da Bzu Tech</h2>
+            <p class="body-md">
+                Conheça como a Bzu aplica suas soluções na prática nestes projetos. Cada um exigiu
+                entender o problema daquele cliente para chegar à solução mais adequada.
+            </p>
+        </div>
+
+        <div class="bzu-carrossel" data-carrossel>
+            <ul class="bzu-carrossel__lista" aria-live="polite">
+                <li class="case-card" tabindex="0" data-pos="0">
+                    <img src="{% static 'assets_brian/sobre a bzu/case-lafepe.png' %}" alt="Logo do LAFEPE Medicamentos" width="446" height="446">
+                    <div class="case-card__conteudo">
+                        <h3 class="text-h4">LAFEPE</h3>
+                        <p class="body-md">O Laboratório Farmacêutico de Pernambuco guarda medicamentos e insumos que estragam se esquentarem. A Bzu colocou sensores nas câmaras frias, nos freezers e nas áreas de estoque, que registram sozinhos a temperatura e a umidade. Esse histórico ajuda o laboratório a provar, nas fiscalizações e auditorias, que tudo foi guardado do jeito certo.</p>
+                    </div>
+                </li>
+                <li class="case-card" tabindex="0" data-pos="1">
+                    <img src="{% static 'assets_brian/sobre a bzu/case-mdias-branco.png' %}" alt="Vista aérea da fábrica da M. Dias Branco" width="712" height="712">
+                    <div class="case-card__conteudo">
+                        <h3 class="text-h4">M. Dias Branco</h3>
+                        <p class="body-md">Para fazer pães e massas, a massa precisa fermentar na temperatura e na umidade certas. A Bzu instalou sensores nessa etapa da fábrica, que acompanham essas condições o tempo todo. Assim, a equipe vê na hora se algo saiu do ponto, sem depender de alguém conferindo manualmente.</p>
+                    </div>
+                </li>
+                <li class="case-card" tabindex="0" data-pos="2">
+                    <img src="{% static 'assets_brian/sobre a bzu/case-smartlet.png' %}" alt="Smartlet no Recife Antigo" width="539" height="539">
+                    <div class="case-card__conteudo">
+                        <h3 class="text-h4">Smartlet</h3>
+                        <p class="body-md">O Smartlet é um espaço público no Recife Antigo com Wi-Fi grátis, tomadas e energia solar. Com os sensores da Bzu, ele também passou a medir temperatura, qualidade do ar, chuva, gasto de energia e uso dos equipamentos. Um móvel de rua virou uma fonte de informações para ajudar a planejar a cidade.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Carousel (Styleguide BRIAN): seta · barra · seta -->
+            <div class="carousel">
+                <button type="button" class="carousel-item" data-dir="-1" aria-label="Caso anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+                <span class="carousel-bar" aria-hidden="true"><span class="carousel-bar__thumb"></span></span>
+                <button type="button" class="carousel-item" data-dir="1" aria-label="Próximo caso">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- cta-section -->
+    <section class="bzu-cta">
+        <span class="bzu-blob bzu-blob--cta" aria-hidden="true"></span>
+        <div class="bzu-cta__texto">
+            <h2 class="text-h3">Quer saber mais sobre a Bzu?</h2>
+            <p class="body-md">
+                Elaboramos um chatbot com IA integrada para informar de maneira coerente os serviços,
+                os hardwares e os softwares da Bzu Tech.
+            </p>
+        </div>
+        <div class="bzu-cta__botoes">
+            <a href="https://www.bzutech.com.br/" class="button button--outline-secondary" target="_blank" rel="noopener">Site da Bzu Tech</a>
+            <a href="{% url 'ia_chat' %}" class="button button--primary">Fale com BRIAN</a>
+        </div>
+    </section>
+
+</div>
 
 <style>
-    /* Usa as variáveis do style.css (corese fontes já vêm de lá) */
+    /* ---------- Página ---------- */
+    /* Seções sem z-index (não criam contexto de empilhamento): as formas com z-index
+       ficam por cima da faixa escura, como no Figma; a dos casos fica atrás dos cards. */
+    .bzu { position: relative; overflow-x: clip; }
+    .bzu > section { position: relative; }
+    .bzu-hero > :not(.bzu-blob),
+    .bzu-servicos > :not(.bzu-blob),
+    .bzu-casos > :not(.bzu-blob) { position: relative; }
 
-    /* ---------- Títulos e textos de seção ---------- */
-    .sobre-titulo {
-        color: var(--title-accent);
-        margin-bottom: 12px;
-    }
-
-    .sobre-intro {
-        max-width: 70ch;
-        color: var(--text-secondary);
-        line-height: var(--lh-body);
-    }
-
-    /* ---------- Topo ---------- */
-    .sobre-topo {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 48px;
-    }
-
-    .sobre-topo__texto h1 {
-        color: var(--text-primary);
-        margin-bottom: 16px;
-    }
-
-    .sobre-topo__texto p {
-        color: var(--text-secondary);
-        max-width: 50ch;
-    }
-
-    .sobre-topo__midia {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        aspect-ratio: 16 / 10;
-        background: var(--laranja-500);
-        border-radius: var(--radius);
-    }
-
-    .sobre-topo__midia img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: var(--radius);
-    }
-
-    .sobre-topo__icone {
-        width: 30%;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 6;
-        stroke-linecap: round;
-    }
-
-    .sobre-topo__icone circle {
-        fill: #fff;
-        stroke: none;
-    }
-
-    /* ---------- Como a Bzu pode te ajudar ---------- */
-    .sobre-ajuda,
-    .sobre-casos {
-        position: relative;
-        margin-top: 120px;
-    }
-
-    .sobre-ajuda > *:not(.sobre-ajuda__circulo),
-    .sobre-casos > *:not(.sobre-casos__circulo) {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Círculo rosa decorativo atrás dos cards */
-    .sobre-ajuda__circulo {
+    /* Formas orange-50: Figma limita o raio de 402px à metade do lado ⇒ 50%, um canto reto */
+    .bzu-blob {
         position: absolute;
-        right: -10%;
-        top: 40px;
-        width: 560px;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        background: var(--laranja-100);
-        opacity: 0.8;
+        background: var(--surface-default);
+        pointer-events: none;
+        aspect-ratio: 1;
+    }
+    .bzu-blob--hero {                 /* 386px, canto reto embaixo à direita (Figma: vetor girado 180°); desce 167px sobre a faixa escura */
+        z-index: 2;
+        bottom: -167px;
+        right: 0;
+        width: var(--blob-hero, 386px);
+        border-radius: 50% 50% 0 50%;
+    }
+    .bzu-blob--servicos {             /* 312px, canto reto embaixo à esquerda; sai 156px da faixa escura */
+        z-index: 2;
+        bottom: -156px;
+        left: 0;
+        width: var(--blob-pequeno, 312px);
+        border-radius: 50% 50% 50% 0;
+    }
+    .bzu-blob--casos {                /* 464px, canto reto embaixo à direita (girado 180°); atrás dos cards */
         z-index: 0;
+        top: 636px;
+        right: 0;
+        width: var(--blob-casos, 464px);
+        border-radius: 50% 50% 0 50%;
+    }
+    .bzu-blob--cta {                  /* 312px, canto reto embaixo à esquerda; invade o rodapé 16px */
+        z-index: 2;
+        bottom: -16px;
+        left: 0;
+        width: var(--blob-pequeno, 312px);
+        border-radius: 50% 50% 50% 0;
     }
 
-    .sobre-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 32px;
-    }
-
-    .sobre-card {
-        background: var(--bg-body);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
-        overflow: hidden;
-        transition: var(--transition);
-    }
-
-    .sobre-card:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateY(-4px);
-    }
-
-    .sobre-card__imagem {
+    /* ---------- Hero (H, padding 100/20, centro vertical) ---------- */
+    .bzu-hero {
         display: flex;
         align-items: center;
-        justify-content: center;
-        aspect-ratio: 16 / 9;
+        min-height: 644px;
+        padding: 100px var(--pad-x);
+        max-width: var(--container-max);
+        margin: 0 auto;
     }
-
-    .sobre-card__imagem--laranja { background: var(--laranja-500); }
-    .sobre-card__imagem--roxo { background: var(--roxo-600); }
-
-    .sobre-card__imagem svg {
-        width: 64px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 3;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-
-    .sobre-card__corpo {
-        padding: 16px 20px 20px;
-    }
-
-    .sobre-card__etiqueta {
-        display: block;
-        font-family: var(--font-caption);
-        font-size: 13px;
-        color: var(--laranja-500);
-        margin-bottom: 4px;
-    }
-
-    .sobre-card__corpo h3 {
-        font-size: var(--fs-h4);
-        color: var(--text-primary);
-        margin-bottom: 6px;
-    }
-
-    .sobre-card__corpo p {
-        font-size: var(--fs-body-sm);
-        color: var(--text-muted);
-        line-height: 1.5;
-    }
-
-    /* ---------- Casos reais (carrossel) ---------- */
-
-    /* Círculo roxo decorativo embaixo à esquerda */
-    .sobre-casos__circulo {
-        position: absolute;
-        left: -6%;
-        bottom: -40px;
-        width: 260px;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        background: var(--roxo-200);
-        z-index: 0;
-    }
-
-    .carrossel {
-        margin-top: 40px;
-    }
-
-    .carrossel__janela {
-        overflow: hidden;
-        padding: 12px 0;
-    }
-
-    .carrossel__trilho {
+    .bzu-hero__texto {
+        flex: 0 1 595px;
         display: flex;
-        gap: 24px;
-        transition: transform 0.6s ease;
+        flex-direction: column;
+        gap: 12px;
     }
-
-    /* Slide do meio grande; os vizinhos aparecem nas laterais, menores e apagados */
-    .carrossel__slide {
-        flex: 0 0 64%;
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        padding: 28px;
-        background: var(--bg-body);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
-        opacity: 0.45;
-        transform: scale(0.9);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .carrossel__slide.is-ativo {
-        opacity: 1;
-        transform: scale(1);
-        box-shadow: var(--shadow-md);
-    }
-
-    .carrossel__imagem {
-        flex: 0 0 200px;
-        aspect-ratio: 1 / 1;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border-color);
-    }
-
-    .carrossel__imagem img {
-        display: block;
+    .bzu-hero__texto h1 { color: var(--text-heading); }
+    .bzu-hero__texto .destaque { color: var(--purple-500); }   /* Figma: "Bzu" em Secondary/500 */
+    .bzu-hero__texto p { color: var(--text-body); }
+    .bzu-hero__midia {
+        flex: 0 1 790px;
+        min-width: 0;
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 790 / 444;
         object-fit: cover;
     }
 
-    .carrossel__texto h3 {
-        font-size: var(--fs-h4);
-        color: var(--title-accent);
-        margin-bottom: 8px;
-    }
-
-    .carrossel__texto p {
-        font-size: var(--fs-body-sm);
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
-    .carrossel__controles {
+    /* ---------- Seções com bloco central de 868px ---------- */
+    .bzu-intro {
+        width: 100%;
+        max-width: 868px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-        margin-top: 20px;
-    }
-
-    .carrossel__seta {
-        width: 40px;
-        height: 40px;
-        border: 2px solid var(--brand);
-        border-radius: 50%;
-        background: transparent;
-        color: var(--link);
-        font-size: 1.4rem;
-        line-height: 1;
-        cursor: pointer;
-        transition: var(--transition);
-    }
-
-    .carrossel__seta:hover {
-        background: var(--brand);
-        color: #fff;
-    }
-
-    .carrossel__pontos {
-        display: flex;
+        flex-direction: column;
         gap: 8px;
     }
 
-    .carrossel__ponto {
-        width: 10px;
-        height: 10px;
-        padding: 0;
-        border: none;
-        border-radius: 50%;
-        background: var(--border-color);
-        cursor: pointer;
-        transition: var(--transition);
-    }
-
-    .carrossel__ponto.is-ativo {
-        width: 24px;
-        border-radius: 5px;
-        background: var(--brand);
-    }
-
-    .carrossel__seta:focus-visible,
-    .carrossel__ponto:focus-visible {
-        outline: 3px solid var(--roxo-400);
-        outline-offset: 2px;
-    }
-
-    /* ---------- Final ---------- */
-    .sobre-final {
-        margin-top: 140px;
-        max-width: 760px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .sobre-final h2 span {
-        display: block;
-    }
-
-    .sobre-final__laranja { color: var(--laranja-700); }
-    .sobre-final__roxo { color: var(--roxo-600); }
-
-
-    .sobre-final p {
-        margin-top: 16px;
-        color: var(--text-secondary);
-        max-width: 60ch;
-    }
-
-    .sobre-final__botoes {
+    /* services-section: Surface/page-dark, raio 8, padding 200/20, gap 72 */
+    .bzu-servicos {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 72px;
+        padding: 200px var(--pad-x);
+        background: var(--surface-page-dark);
+        border-radius: var(--radius);
+    }
+    .bzu-servicos .bzu-intro h2 { color: var(--text-heading-dark); }
+    .bzu-servicos .bzu-intro p { color: var(--text-caption-dark); }
+
+    .bzu-chats {
+        width: 100%;
+        max-width: 868px;
+        display: flex;
+        flex-direction: column;
+        gap: 47px;                        /* 171 − 124 no Figma */
+    }
+    .bzu-chat {
+        width: 100%;
+        max-width: 514px;
+        min-height: 124px;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-top: 32px;
+        gap: 12px;
+        padding: 24px;
+        background: var(--surface-action);
+        color: var(--text-on-action);
+        border-radius: 62px 62px 62px 0;  /* Figma 80/402/402/0, limitado a 62 (metade da altura) */
+    }
+    .bzu-chat--direita {
+        max-width: 509px;
+        align-self: flex-end;
+        border-radius: 62px 62px 0 62px;  /* Figma 402/80/0/402 */
+    }
+    .bzu-chat h3 { text-align: center; color: var(--text-on-action); }
+    .bzu-chat p { color: var(--text-on-action); }
+
+    /* ---------- case-section ---------- */
+    .bzu-casos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 72px;
+        padding: 200px var(--pad-x);
+    }
+    .bzu-casos .bzu-intro h2 { color: var(--text-heading); }
+    .bzu-casos .bzu-intro p { color: var(--text-caption); }
+
+    .bzu-carrossel {
+        width: 100%;
+        max-width: 1400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .bzu-carrossel__lista {
+        list-style: none;
+        position: relative;
+        width: 100%;
+        height: 338px;                    /* 28 de desnível + 308 do card + 2 do contorno */
     }
 
-    .sobre-btn {
-        display: inline-block;
-        min-width: 150px;
-        padding: 11px 24px;
-        font-family: var(--font-button);
-        font-size: var(--btn-fs);
-        font-weight: 700;
+    /* Case Cards (Styleguide §2.19): 424×308, contorno 1px POR FORA ⇒ 426×310, raio 9 */
+    .case-card {
+        position: absolute;
+        top: 28px;
+        left: 50%;
+        width: 426px;
+        height: 310px;
+        margin-left: -213px;
+        border: 1px solid var(--border-default);
+        border-radius: 9px;
+        overflow: hidden;
+        background: var(--white);
+        outline: none;
+        transition: transform 0.4s ease, top 0.4s ease;
+    }
+    .case-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* posições: esquerda (x 20), centro (x 488, 28px mais alto), direita (x 956) no frame de 1400 */
+    .case-card[data-slot="esquerda"] { transform: translateX(-468px); }
+    .case-card[data-slot="centro"]   { top: 0; transform: none; z-index: 1; }
+    .case-card[data-slot="direita"]  { transform: translateX(468px); }
+
+    .case-card__conteudo {            /* Status=hover: page-dark 80%, padding 24, gap 12 */
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px;
+        background: rgb(11 11 11 / 0.8);
+        color: var(--text-heading-dark);
+        overflow-y: auto;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+    .case-card__conteudo h3,
+    .case-card__conteudo p { color: var(--text-heading-dark); }
+    .case-card:hover .case-card__conteudo,
+    .case-card:focus-visible .case-card__conteudo { opacity: 1; }
+    .case-card:focus-visible { box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--border-focus); }
+
+    /* Carousel (Styleguide §2.20) */
+    .carousel { display: flex; align-items: center; gap: 12px; }
+    .carousel-item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;                      /* 40 + contorno 1px por fora */
+        height: 42px;
+        padding: 0;
+        border: 1px solid var(--border-action);
+        border-radius: 50%;
+        background: var(--surface-default-secondary);
+        color: var(--icon-action);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    .carousel-item:hover { background: var(--surface-action-hover-alt); }
+    .carousel-item:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+    .carousel-item:disabled { background: var(--surface-disabled); border-color: var(--border-disabled); color: var(--icon-disabled); cursor: not-allowed; }
+    .carousel-bar {
+        position: relative;
+        width: 95px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--surface-default);
+        overflow: hidden;
+    }
+    .carousel-bar__thumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 42px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--surface-action);
+        transition: left 0.3s ease;
+    }
+
+    /* ---------- cta-section ---------- */
+    .bzu-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        padding: 200px var(--pad-x);
+    }
+    .bzu-cta__texto {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 866px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         text-align: center;
-        text-decoration: none;
-        transition: var(--transition);
+    }
+    .bzu-cta__texto h2 { color: var(--text-heading); }
+    .bzu-cta__texto p { color: var(--text-caption); }
+    .bzu-cta__botoes {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;                        /* 20 entre as caixas − 1px de contorno de cada botão */
     }
 
-    .sobre-btn--cheio {
-        background: var(--brand);
-        border: 2px solid var(--brand);
-        border-radius: var(--btn-radius-primary);
-        color: #fff;
+    @media (prefers-reduced-motion: reduce) {
+        .case-card, .carousel-bar__thumb, .case-card__conteudo { transition: none; }
     }
 
-    .sobre-btn--cheio:hover {
-        background: var(--brand-hover);
-        border-color: var(--brand-hover);
-    }
+    /* ---------- Telas menores ---------- */
+    @media (max-width: 1100px) {
+        .bzu { --blob-hero: 260px; --blob-casos: 320px; --blob-pequeno: 220px; }
+        .bzu-hero { flex-direction: column; align-items: flex-start; gap: 48px; min-height: 0; }
+        .bzu-hero__texto { flex-basis: auto; }
+        .bzu-hero__midia { flex-basis: auto; }
+        .bzu-blob--hero { bottom: -100px; }
+        .bzu-blob--servicos { bottom: -110px; }
+        .bzu-blob--casos { display: none; }
 
-    .sobre-btn--contorno {
-        background: transparent;
-        border: 2px solid var(--roxo-600);
-        border-radius: var(--btn-radius-secondary);
-        color: var(--roxo-600);
+        /* carrossel: um card por vez */
+        .bzu-carrossel__lista { height: 312px; }
+        .case-card { top: 0; width: min(426px, 100%); left: 50%; margin-left: 0; transform: translateX(-50%); }
+        .case-card[data-slot="esquerda"],
+        .case-card[data-slot="direita"] { visibility: hidden; opacity: 0; }
+        .case-card[data-slot="centro"] { transform: translateX(-50%); }
     }
-
-    .sobre-btn--contorno:hover {
-        background: var(--roxo-600);
-        color: #fff;
-    }
-
-    /* ---------- Tablet ---------- */
-    @media (max-width: 900px) {
-        .sobre-topo { grid-template-columns: 1fr; }
-        .sobre-cards { grid-template-columns: 1fr; max-width: 420px; }
-        .carrossel__slide { flex-basis: 80%; flex-direction: column; align-items: stretch; }
-        .carrossel__imagem { flex: none; width: 160px; margin: 0 auto; }
-        .sobre-ajuda__circulo { width: 360px; }
-    }
-
-    /* ---------- Celular ---------- */
     @media (max-width: 640px) {
-        .sobre-ajuda, .sobre-casos { margin-top: 80px; }
-        .sobre-final { margin-top: 90px; }
-        .carrossel__slide { flex-basis: 88%; padding: 20px; }
-        .sobre-casos__circulo { width: 160px; }
+        .bzu { --blob-hero: 160px; --blob-pequeno: 160px; }
+        .bzu-hero, .bzu-servicos, .bzu-casos, .bzu-cta { padding-top: 80px; padding-bottom: 80px; }
+        .bzu-servicos, .bzu-casos { gap: 48px; }
+        .bzu-blob--hero { display: none; }
+        .bzu-chat, .bzu-chat--direita { max-width: none; border-radius: 40px 40px 40px 0; }
+        .bzu-chat--direita { border-radius: 40px 40px 0 40px; }
+        .bzu-carrossel__lista { height: auto; aspect-ratio: 426 / 310; }
+        .case-card { height: 100%; }
     }
 </style>
 
 <script>
-(function () {
-    const carrossel = document.getElementById('carrossel-casos');
-    if (!carrossel) return;
+    /* Carrossel de casos: as setas giram os 3 cards (esquerda · centro · direita) */
+    (function () {
+        const raiz = document.querySelector('[data-carrossel]');
+        if (!raiz) return;
+        const cards = Array.from(raiz.querySelectorAll('.case-card'));
+        const thumb = raiz.querySelector('.carousel-bar__thumb');
+        const total = cards.length;
+        let atual = 1;                         /* Figma: o card do meio começa no centro */
 
-    const janela = carrossel.querySelector('.carrossel__janela');
-    const trilho = carrossel.querySelector('.carrossel__trilho');
-    const originais = Array.from(carrossel.querySelectorAll('.carrossel__slide'));
-    const areaPontos = carrossel.querySelector('.carrossel__pontos');
-    const total = originais.length;
-    let timer = null;
-
-    // Copia os slides antes e depois, para sempre ter vizinhos dos dois lados (loop infinito)
-    originais.forEach((s) => {
-        const copia = s.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true');
-        trilho.appendChild(copia);
-    });
-    originais.slice().reverse().forEach((s) => {
-        const copia = s.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true');
-        trilho.insertBefore(copia, trilho.firstChild);
-    });
-
-    const slides = Array.from(trilho.querySelectorAll('.carrossel__slide'));
-    let atual = total; // começa no primeiro slide original (o do meio)
-
-    // Um ponto para cada caso
-    const pontos = originais.map((_, i) => {
-        const ponto = document.createElement('button');
-        ponto.type = 'button';
-        ponto.className = 'carrossel__ponto';
-        ponto.setAttribute('aria-label', 'Ir para o caso ' + (i + 1));
-        ponto.addEventListener('click', () => { irPara(total + i); reiniciarTimer(); });
-        areaPontos.appendChild(ponto);
-        return ponto;
-    });
-
-    // Centraliza o slide escolhido na janela
-    function irPara(indice, semAnimacao) {
-        atual = indice;
-        const slide = slides[atual];
-        const centroJanela = janela.clientWidth / 2;
-        const centroSlide = slide.offsetLeft + slide.offsetWidth / 2;
-
-        trilho.style.transition = semAnimacao ? 'none' : '';
-        slides.forEach((s) => (s.style.transition = semAnimacao ? 'none' : ''));
-        trilho.style.transform = 'translateX(' + (centroJanela - centroSlide) + 'px)';
-
-        slides.forEach((s, i) => s.classList.toggle('is-ativo', i === atual));
-        pontos.forEach((p, i) => p.classList.toggle('is-ativo', i === atual % total));
-
-        if (semAnimacao) {
-            void trilho.offsetWidth;
-            trilho.style.transition = '';
-            slides.forEach((s) => (s.style.transition = ''));
+        function desenhar() {
+            cards.forEach(function (card, i) {
+                const rel = (i - atual + total) % total;
+                const slot = rel === 0 ? 'centro' : (rel === 1 ? 'direita' : 'esquerda');
+                card.dataset.slot = slot;
+                card.setAttribute('aria-hidden', slot === 'centro' ? 'false' : (window.innerWidth <= 1100 ? 'true' : 'false'));
+            });
+            /* barra: trilho 95px, polegar 42px ⇒ 53px de curso */
+            thumb.style.left = (atual * (95 - 42) / (total - 1)) + 'px';
         }
-    }
 
-    // Quando passa das cópias, volta para o original equivalente sem ninguém perceber
-    trilho.addEventListener('transitionend', (e) => {
-        if (e.target !== trilho) return;
-        if (atual >= total * 2) irPara(atual - total, true);
-        if (atual < total) irPara(atual + total, true);
-    });
-
-    // Setas
-    carrossel.querySelectorAll('.carrossel__seta').forEach((seta) => {
-        seta.addEventListener('click', () => {
-            irPara(atual + Number(seta.dataset.direcao));
-            reiniciarTimer();
+        raiz.querySelectorAll('[data-dir]').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                atual = (atual + Number(botao.dataset.dir) + total) % total;
+                desenhar();
+            });
         });
-    });
-
-    // Clicar num slide lateral leva até ele
-    slides.forEach((s, i) => s.addEventListener('click', () => {
-        if (i !== atual) { irPara(i); reiniciarTimer(); }
-    }));
-
-    // Passa sozinho a cada 6 segundos; pausa com o mouse em cima
-    function reiniciarTimer() {
-        clearInterval(timer);
-        timer = setInterval(() => irPara(atual + 1), 6000);
-    }
-
-    carrossel.addEventListener('mouseenter', () => clearInterval(timer));
-    carrossel.addEventListener('mouseleave', reiniciarTimer);
-    window.addEventListener('resize', () => irPara(atual, true));
-
-    irPara(atual, true);
-    reiniciarTimer();
-})();
+        window.addEventListener('resize', desenhar);
+        desenhar();
+    })();
 </script>
 
 {% endblock %}

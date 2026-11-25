@@ -124,12 +124,6 @@
         <h2 class="text-h3 fale-feedback__titulo">Ajude o BRIAN com sua <span class="destaque">opinião</span></h2>
 
         <div class="fale-feedback__conteudo">
-            <p class="body-md fale-feedback__texto">
-                Esse é um projeto acadêmico e nossa equipe apreciaria muito o seu feedback,
-                elogios ou pontos de melhoria para o BRIAN. Dessa forma, poderíamos compreender
-                o que poderia ser melhor no nosso projeto.
-            </p>
-
             <form method="post" action="{% url 'sobre_nos' %}" class="fale-form">
                 {% csrf_token %}
                 <div class="campo-texto">
@@ -141,6 +135,12 @@
                 </div>
                 <button type="submit" class="button button--primary fale-form__enviar">Enviar</button>
             </form>
+
+            <p class="body-md fale-feedback__texto">
+                Esse é um projeto acadêmico e nossa equipe apreciaria muito o seu feedback,
+                elogios ou pontos de melhoria para o BRIAN. Dessa forma, poderíamos compreender
+                o que poderia ser melhor no nosso projeto.
+            </p>
         </div>
     </section>
 
@@ -213,8 +213,8 @@
         flex-direction: column;
         gap: 12px;
     }
-    .fale-hero__texto h1 { color: var(--grey-900); }
-    .fale-hero__texto p { color: var(--grey-625); }
+    .fale-hero__texto h1 { color: var(--text-heading); }
+    .fale-hero__texto p { color: var(--text-caption); }
     .fale-hero__foto {
         flex-shrink: 0;
         display: block;
@@ -243,7 +243,7 @@
         width: 100%;
         max-width: 862px;
     }
-    .fale-time__titulo { color: var(--grey-100); }
+    .fale-time__titulo { color: var(--text-heading-dark); }
     .fale-time__grade {
         list-style: none;
         display: grid;
@@ -261,11 +261,12 @@
         width: 92px;
         height: 92px;
         border-radius: 50%;
+        box-shadow: 0 0 0 4px var(--surface-default);   /* Figma: elipse de 100px orange-50 atrás da foto */
     }
-    /* Profile (Figma): 252×92, contorno de 1px POR FORA → 254×94 com margem -1px */
+    /* Profile no protótipo: 226×92, contorno de 1px POR FORA → 228×94 com margem -1px */
     .integrante__card {
         flex-shrink: 0;
-        width: 254px;
+        width: 228px;
         height: 94px;
         margin: -1px;
         padding: 15px;                 /* 16px do Figma menos o contorno */
@@ -356,8 +357,12 @@
         line-height: var(--lh-body-md);
         color: var(--grey-775);
     }
-    .campo-texto__area::placeholder { color: var(--grey-375); }
-    .campo-texto__area:focus { outline: none; border-color: var(--orange-500); }
+    .campo-texto__area::placeholder { color: var(--text-placeholder); opacity: 1; }
+    /* Text Area (Styleguide §2.8): hover laranja; foco mantém a borda e mostra o anel de 2px */
+    .campo-texto__area:hover { background: var(--surface-action-hover-alt); border-color: var(--border-action); }
+    .campo-texto__area:hover::placeholder { color: var(--text-action-hover-alt); }
+    .campo-texto__area:focus { outline: none; }
+    .campo-texto__area:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; background: var(--white); border-color: var(--border-default); }
     .campo-texto__contador {
         height: 20px;
         text-align: right;
@@ -376,7 +381,7 @@
         flex-direction: column;
         align-items: center;
         gap: 48px;
-        padding: 100px var(--pad-x);
+        padding: 200px var(--pad-x);
     }
     .fale-cta__texto {
         position: relative;
@@ -413,7 +418,7 @@
     }
     @media (max-width: 640px) {
         .fale { --blob-hero: 160px; --blob-time: 140px; --blob-feedback: 200px; }
-        .fale-hero, .fale-time, .fale-feedback, .fale-cta { padding-top: 64px; padding-bottom: 64px; }
+        .fale-hero, .fale-time, .fale-feedback, .fale-cta { padding-top: 80px; padding-bottom: 80px; }
         .fale-time, .fale-feedback { gap: 48px; }
         .integrante__card { width: auto; flex: 1 1 auto; min-width: 0; }
         .integrante__email { overflow-wrap: anywhere; }

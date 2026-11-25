@@ -363,7 +363,8 @@ Variants `Status = default | hover`. Props: Card-Content (bool), Card-text (titl
 **`.carousel bar`** (scroll indicator): track height **8**, radius 999, bg `Surface/default` #fbeae5, clips; thumb absolutely positioned, height 8, radius 999, bg `Surface/action` #d34416. Thumb width ≈ visible fraction (e.g. 75 of 168); left offset = scroll progress.
 
 ## 3. Page patterns (prototype `Arquivo_BRIAN` → "Protótipo final" `34:3736`)
-Frame → template map: inicio `34:4133` → index.html · fale conosco `34:4222` → sobre_nos.html · login/signup section `123:2807` (default/error/filled frames) · BRIAN chat section `123:3439` (no-login, login-nohistory, login-history, collapsed-bar, alert frames). **"sobre a bzu" `126:3440` is not ready — ignore it.**
+Frame → template map: inicio `34:4133` → index.html · sobre a bzu `126:3440` → sobre_empresa.html · fale conosco `34:4222` → sobre_nos.html · login/signup section `123:2807` (default/error/filled frames) · BRIAN chat section `123:3439` (no-login, login-nohistory, login-history, collapsed-bar, alert frames). quiz.html has no frame — it is composed from styleguide components.
+- Decorative blobs are square VECTORs with corner radius 402 on 3 vertices: rotation 0 ⇒ square corner bottom-left (`50% 50% 50% 0`); rotation −180 ⇒ square corner bottom-right (`50% 50% 0 50%`) — verified against Figma renders. Anchor each blob to its own section; sections must not set z-index so blobs can sit above the dark band.
 
 - Canvas 1440 wide, page bg `Surface/page` #fff. Content column **868** centered (side padding 20 at the edges).
 - NavBar (§2.16) on top of every page.

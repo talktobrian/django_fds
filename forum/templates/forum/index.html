@@ -72,7 +72,13 @@
     <section class="inicio-cta">
         <span class="inicio-blob inicio-blob--cta" aria-hidden="true"></span>
 
-        <h2 class="text-h3">Você pergunta e o BRIAN responde com versatilidade</h2>
+        <div class="inicio-cta__texto">
+            <h2 class="text-h3">Você pergunta e o BRIAN responde com versatilidade</h2>
+            <p class="body-md">
+                O chatbot é uma maneira adaptável de comunicar o seu serviço. Assim, os usuários
+                compreendem o valor proposto de acordo com o nível de conhecimento técnico deles.
+            </p>
+        </div>
 
         <div class="inicio-cta__botoes">
             <a href="{% url 'sobre_empresa' %}" class="button button--outline">Sobre a Bzu Tech</a>
@@ -100,8 +106,8 @@
         aspect-ratio: 1;
         border-radius: 50% 50% 0 50%;
     }
-    .inicio-blob--cta {              /* 328px, canto reto embaixo à esquerda, invade o rodapé */
-        top: 106px;
+    .inicio-blob--cta {              /* 328px, canto reto embaixo à esquerda; sobe 94px sobre a faixa escura (Figma) */
+        top: -94px;
         left: 0;
         width: var(--blob-cta, 328px);
         aspect-ratio: 1;
@@ -121,7 +127,7 @@
         z-index: 1;
         max-width: 868px;
         text-align: center;
-        color: var(--grey-900);
+        color: var(--text-heading);
     }
     .inicio-hero__titulo .destaque { color: var(--orange-500); }
     .inicio-hero__preview {
@@ -142,7 +148,7 @@
         flex-direction: column;
         align-items: center;
         gap: 72px;
-        padding: 100px var(--pad-x);
+        padding: 200px var(--pad-x);
         background: var(--grey-900);
         border-radius: var(--radius);
     }
@@ -155,8 +161,8 @@
         flex-direction: column;
         gap: 12px;
     }
-    .inicio-servico__intro h2 { color: var(--grey-100); }
-    .inicio-servico__intro p { color: var(--grey-375); }
+    .inicio-servico__intro h2 { color: var(--text-heading-dark); }
+    .inicio-servico__intro p { color: var(--text-caption-dark); }
 
     .inicio-servico__cards {
         position: relative;
@@ -213,15 +219,19 @@
         flex-direction: column;
         align-items: center;
         gap: 48px;
-        padding: 100px var(--pad-x);
+        padding: 200px var(--pad-x);
     }
-    .inicio-cta h2 {
+    .inicio-cta__texto {             /* Figma Frame 23: 866px, gap 8, centralizado */
         position: relative;
         z-index: 1;
-        max-width: 867px;
+        max-width: 866px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         text-align: center;
-        color: var(--grey-900);
     }
+    .inicio-cta__texto h2 { color: var(--text-heading); }
+    .inicio-cta__texto p { color: var(--text-caption); }
     .inicio-cta__botoes {
         position: relative;
         z-index: 1;
@@ -239,7 +249,7 @@
     }
     @media (max-width: 640px) {
         .inicio { --blob-servico: 160px; --blob-cta: 160px; }
-        .inicio-hero, .inicio-servico, .inicio-cta { padding-top: 64px; padding-bottom: 64px; }
+        .inicio-hero, .inicio-servico, .inicio-cta { padding-top: 80px; padding-bottom: 80px; }
         .inicio-servico { gap: 48px; }
         .inicio-blob--servico { top: -80px; }
         .inicio-card--largo { padding: 48px 28px; }
