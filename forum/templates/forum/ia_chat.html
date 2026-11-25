@@ -1,100 +1,162 @@
 {% extends 'forum/base.html' %}
 {% load static %}
 
-{% block title %}BrIAn - Assistente BZU Tech{% endblock %}
+{% block title %}BRIAN - Assistente BZU Tech{% endblock %}
 {% block container_class %}container--chat{% endblock %}
+{% block footer %}{% endblock %}
 
 {% block content %}
-
+<!-- Figma: Protótipo final / BRIAN variations (brian-*) -->
 <div class="chat-layout">
 
-    <!-- Barra lateral: nova conversa + lista de conversas -->
-    <aside class="chat-sidebar">
-        <form method="post" action="{% url 'nova_conversa' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn-new-chat">+ Nova conversa</button>
-        </form>
-        <button type="button" id="btn-quiz" class="btn-quiz">{% if perfil %}Seu perfil: {{ perfil_titulo }} · Refazer quiz{% else %}Fazer o quiz{% endif %}</button>
+    <!-- side-bar: Histórico, Fazer Quiz, conversas (pode ser recolhida) -->
+    <aside class="chat-sidebar" id="chat-sidebar" aria-label="Histórico de conversas">
+        <button type="button" class="chat-sidebar__abrir" id="sidebar-abrir" aria-label="Abrir histórico" aria-controls="chat-sidebar" aria-expanded="false" title="Abrir histórico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20H17.0909C17.9375 20 18.3608 20 18.6989 19.8739C19.2425 19.6712 19.6712 19.2425 19.8739 18.6989C20 18.3608 20 17.9375 20 17.0909V12C20 7.58172 16.4183 4 12 4V4C7.58172 4 4 7.58172 4 12V12C4 16.4183 7.58172 20 12 20Z" stroke-width="2" stroke="currentColor"/><path d="M9 11.0002L15 11.0002" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M12 15.0002H15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/></svg>
+        </button>
 
-        <div class="sidebar-title">Histórico de conversas</div>
+        <div class="chat-sidebar__conteudo">
+            <div class="chat-sidebar__topo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20H17.0909C17.9375 20 18.3608 20 18.6989 19.8739C19.2425 19.6712 19.6712 19.2425 19.8739 18.6989C20 18.3608 20 17.9375 20 17.0909V12C20 7.58172 16.4183 4 12 4V4C7.58172 4 4 7.58172 4 12V12C4 16.4183 7.58172 20 12 20Z" stroke-width="2" stroke="currentColor"/><path d="M9 11.0002L15 11.0002" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M12 15.0002H15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/></svg>
+                <h2 class="chat-sidebar__titulo">Histórico</h2>
+                <button type="button" class="chat-sidebar__fechar" id="sidebar-fechar" aria-label="Recolher histórico" aria-controls="chat-sidebar" aria-expanded="true" title="Recolher histórico">
+                    <!-- curtain_right_expand_left -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 14.5002L7 12.0002L9 9.50024M7 12.0002H12.5" stroke-width="1.5" stroke="currentColor"/><path d="M18.5 3.5H5.5C4.39543 3.5 3.5 4.39543 3.5 5.5V18.5C3.5 19.6046 4.39543 20.5 5.5 20.5H18.5C19.6046 20.5 20.5 19.6046 20.5 18.5V5.5C20.5 4.39543 19.6046 3.5 18.5 3.5Z" stroke-width="1.5" stroke-linecap="round" stroke="currentColor"/><path d="M15.5 3.5V20.5" stroke-width="1.5" stroke-linecap="round" stroke="currentColor"/></svg>
+                </button>
+            </div>
 
-        {% if user.is_authenticated %}
-            <nav class="conversation-list">
+            <div class="chat-sidebar__quiz">
+                <button type="button" id="btn-quiz" class="button button--primary btn-quiz">{% if perfil %}Refazer Quiz{% else %}Fazer Quiz{% endif %}</button>
+                <p class="chat-sidebar__perfil" id="quiz-perfil"{% if not perfil %} hidden{% endif %}>{% if perfil %}Seu perfil: {{ perfil_titulo }}{% endif %}</p>
+            </div>
+
+            {% if not user.is_authenticated %}
+            <!-- .info-card -->
+            <div class="chat-info">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-width="2" stroke="currentColor"/><path d="M12.5 7.5C12.5 7.77614 12.2761 8 12 8C11.7239 8 11.5 7.77614 11.5 7.5C11.5 7.22386 11.7239 7 12 7C12.2761 7 12.5 7.22386 12.5 7.5Z" fill="currentColor" stroke="currentColor"/><path d="M12 17V10" stroke-width="2" stroke="currentColor"/></svg>
+                <div class="chat-info__texto">
+                    <p>Entre na sua conta para salvar histórico.</p>
+                    <a href="{% url 'login' %}?next={% url 'ia_chat' %}">Fazer login</a>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- .conversas -->
+            <nav class="conversation-list" aria-label="Conversas">
+                <form method="post" action="{% url 'nova_conversa' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-new-chat">
+                        <!-- Add_round -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6L12 18" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><path d="M18 12L6 12" stroke-width="2" stroke-linecap="round" stroke="currentColor"/></svg>
+                        <span>Nova Conversa</span>
+                    </button>
+                </form>
+
                 {% for c in conversas %}
-                <div class="conversation-item {% if c.id == conversa_atual_id %}active{% endif %}">
-                    <a href="{% url 'abrir_conversa' c.id %}" class="conversation-link" title="{{ c.titulo }}">{{ c.titulo|default:"Conversa sem título" }}</a>
+                <div class="conversation-item{% if c.id == conversa_atual_id %} active{% endif %}">
+                    <a href="{% url 'abrir_conversa' c.id %}" class="conversation-link" title="{{ c.titulo }}"{% if c.id == conversa_atual_id %} aria-current="page"{% endif %}>{{ c.titulo|default:"Conversa sem título" }}</a>
                     <form method="post" action="{% url 'apagar_conversa' c.id %}" onsubmit="return confirm('Apagar esta conversa?');">
                         {% csrf_token %}
-                        <button type="submit" class="conversation-delete" title="Apagar conversa" aria-label="Apagar conversa">✕</button>
+                        <button type="submit" class="conversation-delete" title="Apagar conversa" aria-label="Apagar conversa">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/></svg>
+                        </button>
                     </form>
                 </div>
                 {% empty %}
-                <p class="sidebar-empty">Suas conversas aparecem aqui depois da primeira mensagem.</p>
+                <p class="sidebar-empty">Não há conversas anteriores.</p>
                 {% endfor %}
             </nav>
-        {% else %}
-            <p class="sidebar-empty">Entre na sua conta para guardar o histórico das conversas. <a href="{% url 'login' %}?next={% url 'ia_chat' %}">Fazer login</a></p>
-        {% endif %}
+        </div>
     </aside>
 
-<div class="gemini-chat-container">
-    <!-- Área de mensagens (histórico) -->
-    <div class="chat-messages" id="chat-messages">
-        <!-- Mensagem inicial de boas-vindas do BrIAn -->
-        <div class="message brian-message">
-            <div class="message-bubble">Olá! Sou o BrIAn, assistente virtual da BZU Tech. Como posso te ajudar hoje?</div>
-        </div>
+    <!-- chat + promptbar -->
+    <div class="gemini-chat-container">
+        <div class="chat-area">
+            <div class="chat-messages" id="chat-messages" aria-live="polite">
+                <div class="message brian-message">
+                    <div class="message-bubble">Olá! Sou o BrIAn, assistente virtual da BZU Tech. Como posso te ajudar hoje?</div>
+                </div>
 
-        {% for m in mensagens %}
-        <div class="message {% if m.papel == 'user' %}user-message{% else %}brian-message{% endif %}">
-            <div class="message-bubble" style="white-space: pre-wrap;">{{ m.texto }}</div>
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Seção inferior fixa/centralizada -->
-    <div class="chat-bottom-section">
-
-        <!-- Cartão do anexo (aparece acima da barra de digitação) -->
-        <div class="attachment-preview" id="attachment-preview">
-            <img class="attachment-thumb" id="attachment-thumb" alt="" style="display:none;">
-            <div class="attachment-icon" id="attachment-icon" style="display:none;"></div>
-            <div class="attachment-info">
-                <span class="attachment-name" id="attachment-name"></span>
-                <span class="attachment-size" id="attachment-size"></span>
+                {% for m in mensagens %}
+                <div class="message {% if m.papel == 'user' %}user-message{% else %}brian-message{% endif %}">
+                    <div class="message-bubble">{{ m.texto }}</div>
+                </div>
+                {% endfor %}
             </div>
-            <button type="button" class="attachment-remove" id="attachment-remove" title="Remover anexo">✕</button>
+
+            <!-- Alertas (Styleguide: Alerts) -->
+            <div class="chat-alertas" id="chat-alertas"></div>
         </div>
 
-        <form id="chat-form" class="gemini-input-form">
-            {% csrf_token %}
-            <input type="file" id="file-input" name="arquivo"
-                   accept="image/*,.pdf,.txt,.csv" hidden>
+        <!-- Prompt Bar -->
+        <div class="chat-bottom-section">
+            <div class="attachment-preview" id="attachment-preview">
+                <img class="attachment-thumb" id="attachment-thumb" alt="" style="display:none;">
+                <div class="attachment-icon" id="attachment-icon" style="display:none;"></div>
+                <div class="attachment-info">
+                    <span class="attachment-name" id="attachment-name"></span>
+                    <span class="attachment-size" id="attachment-size"></span>
+                </div>
+                <button type="button" class="attachment-remove" id="attachment-remove" title="Remover anexo" aria-label="Remover anexo">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><path d="M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke="currentColor"/></svg>
+                </button>
+            </div>
 
-            <button type="button" id="btn-attach" class="btn-attach" title="Anexar foto ou documento">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
-                </svg>
-            </button>
+            <form id="chat-form" class="gemini-input-form">
+                {% csrf_token %}
+                <input type="file" id="file-input" name="arquivo" accept="image/*,.pdf,.txt,.csv" hidden>
 
-            <input type="text" id="user-input" name="message" placeholder="Pergunte aqui sobre a Bzu, sensores, etc..." autocomplete="off">
-            <button type="submit" class="btn-send-icon" title="Enviar">➤</button>
-        </form>
+                <button type="button" id="btn-attach" class="btn-attach" title="Anexar foto ou documento" aria-label="Anexar foto ou documento">
+                    <!-- paper_clip -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 7V15C11 16.1046 11.8954 17 13 17C14.1046 17 15 16.1046 15 15V7C15 4.79086 13.2091 3 11 3C8.79086 3 7 4.79086 7 7V15C7 18.3137 9.68629 21 13 21C16.3137 21 19 18.3137 19 15V10" stroke-width="2" stroke-linecap="round" stroke="currentColor"/></svg>
+                </button>
 
-        <div class="chat-disclaimer">
-            O BRIAN é uma inteligência artificial e pode cometer erros. Por isso, verifique as respostas.
+                <label for="user-input" class="visually-hidden">Mensagem para o BRIAN</label>
+                <input type="text" id="user-input" name="message" placeholder="Pergunte ao BRIAN..." autocomplete="off">
+
+                <button type="submit" class="btn-send-icon" title="Enviar" aria-label="Enviar">
+                    <!-- Send -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.9473 3.71436C18.4639 3.62245 19.1597 3.59127 19.7227 4.06592L19.833 4.16748L19.9346 4.27783C20.4091 4.84072 20.378 5.53661 20.2861 6.05322C20.1868 6.61138 19.9487 7.31645 19.6836 8.11182L17.5205 14.6021C17.2519 15.4079 17.0381 16.0498 16.8516 16.5278C16.6783 16.9719 16.4724 17.4324 16.1631 17.7544C14.9826 18.9826 13.0173 18.9827 11.8369 17.7544C11.5275 17.4324 11.3217 16.9719 11.1484 16.5278C10.9619 16.0497 10.7481 15.4079 10.4795 14.6021C10.3594 14.2417 10.3322 14.1695 10.3027 14.1138C10.2089 13.9365 10.0639 13.7916 9.88672 13.6978C9.83092 13.6682 9.75924 13.6413 9.39844 13.521C8.59248 13.2523 7.95079 13.0386 7.47266 12.8521C7.02856 12.6788 6.56814 12.473 6.24609 12.1636C5.01772 10.9832 5.01786 9.0179 6.24609 7.8374C6.56809 7.52802 7.02857 7.3222 7.47266 7.14893C7.95076 6.9624 8.59256 6.74861 9.39844 6.47998L15.8887 4.31689C16.6841 4.05175 17.3891 3.8137 17.9473 3.71436ZM18.2979 5.68408C17.919 5.75151 17.3815 5.92768 16.5215 6.21436L10.0303 8.37744C9.20305 8.65318 8.61907 8.84839 8.19922 9.01221C7.99175 9.09317 7.84661 9.1584 7.74609 9.21143C7.67441 9.24928 7.6413 9.27273 7.63184 9.27979C7.22267 9.67328 7.22253 10.3278 7.63184 10.7212C7.64142 10.7283 7.67447 10.7517 7.74609 10.7896C7.84664 10.8426 7.99167 10.9078 8.19922 10.9888C8.6191 11.1526 9.20296 11.3478 10.0303 11.6235C10.3272 11.7225 10.5853 11.8044 10.8213 11.9292C11.3537 12.2108 11.7897 12.6467 12.0713 13.1792C12.196 13.4151 12.278 13.6734 12.377 13.9702C12.6527 14.7974 12.8479 15.3814 13.0117 15.8013C13.0927 16.0087 13.1579 16.1539 13.2109 16.2544C13.2488 16.3261 13.2722 16.3592 13.2793 16.3687C13.6727 16.7778 14.3272 16.7778 14.7207 16.3687C14.7278 16.3592 14.7512 16.326 14.7891 16.2544C14.8421 16.1539 14.9073 16.0087 14.9883 15.8013C15.1521 15.3814 15.3473 14.7974 15.623 13.9702L17.7861 7.479C18.0728 6.61909 18.249 6.08152 18.3164 5.70264C18.3177 5.69551 18.3173 5.68794 18.3184 5.68115C18.3118 5.68226 18.3048 5.68285 18.2979 5.68408Z" fill="currentColor"/></svg>
+                </button>
+            </form>
+
+            <p class="chat-disclaimer">O BRIAN é uma inteligência artificial e pode cometer erros. Por isso, verifique as respostas.</p>
         </div>
     </div>
 </div>
-</div>
 
-<!-- Script de envio em tempo real -->
+<!-- Barra lateral: recolher/abrir (lembra a escolha neste navegador) -->
+<script>
+(function () {
+    const sidebar = document.getElementById('chat-sidebar');
+    const btnAbrir = document.getElementById('sidebar-abrir');
+    const btnFechar = document.getElementById('sidebar-fechar');
+    const estreito = window.matchMedia('(max-width: 900px)');
+
+    function definir(recolhida, salvar) {
+        sidebar.classList.toggle('is-recolhida', recolhida);
+        btnAbrir.setAttribute('aria-expanded', String(!recolhida));
+        btnFechar.setAttribute('aria-expanded', String(!recolhida));
+        if (salvar) { try { localStorage.setItem('brianSidebar', recolhida ? 'recolhida' : 'aberta'); } catch (e) {} }
+    }
+
+    let salvo = null;
+    try { salvo = localStorage.getItem('brianSidebar'); } catch (e) {}
+    definir(estreito.matches ? true : salvo === 'recolhida', false);
+
+    btnAbrir.addEventListener('click', function () { definir(false, true); btnFechar.focus(); });
+    btnFechar.addEventListener('click', function () { definir(true, true); btnAbrir.focus(); });
+})();
+</script>
+
+<!-- Envio de mensagens, anexos e alertas -->
 <script>
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const fileInput = document.getElementById('file-input');
     const btnAttach = document.getElementById('btn-attach');
     const chatMessages = document.getElementById('chat-messages');
+    const chatAlertas = document.getElementById('chat-alertas');
 
     const preview = document.getElementById('attachment-preview');
     const previewThumb = document.getElementById('attachment-thumb');
@@ -104,6 +166,42 @@
     const btnRemove = document.getElementById('attachment-remove');
 
     const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+
+    /* Alerta (tipo: aviso | erro | sucesso | info). Some sozinho quando a linha de tempo acaba. */
+    function mostrarAlerta(tipo, mensagem, link) {
+        const alerta = document.createElement('div');
+        alerta.className = 'alerta alerta--' + tipo;
+        alerta.setAttribute('role', tipo === 'erro' || tipo === 'aviso' ? 'alert' : 'status');
+
+        const texto = document.createElement('p');
+        texto.className = 'alerta__mensagem';
+        texto.textContent = mensagem;
+        alerta.appendChild(texto);
+
+        if (link) {
+            const botao = document.createElement('button');
+            botao.type = 'button';
+            botao.className = 'alerta__link';
+            botao.textContent = link.texto;
+            botao.addEventListener('click', function () { alerta.remove(); link.acao(); });
+            alerta.appendChild(botao);
+        }
+
+        const tempo = document.createElement('span');
+        tempo.className = 'alerta__tempo';
+        tempo.setAttribute('aria-hidden', 'true');
+        tempo.addEventListener('animationend', function () { alerta.remove(); });
+        alerta.appendChild(tempo);
+
+        // Passar o mouse ou focar pausa o tempo
+        alerta.addEventListener('mouseenter', function () { alerta.classList.add('is-pausado'); });
+        alerta.addEventListener('mouseleave', function () { alerta.classList.remove('is-pausado'); });
+        alerta.addEventListener('focusin', function () { alerta.classList.add('is-pausado'); });
+        alerta.addEventListener('focusout', function () { alerta.classList.remove('is-pausado'); });
+
+        chatAlertas.appendChild(alerta);
+        return alerta;
+    }
 
     function formatSize(bytes) {
         if (bytes < 1024) return bytes + ' B';
@@ -137,7 +235,7 @@
         }
 
         if (file.size > MAX_BYTES) {
-            alert('O arquivo é grande demais. O limite é 5 MB.');
+            mostrarAlerta('aviso', 'O arquivo é grande demais. O limite é 5 MB.');
             clearAttachment();
             return;
         }
@@ -158,25 +256,29 @@
         preview.classList.add('visible');
     });
 
-    chatForm.addEventListener('submit', async function(e) {
+    chatForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const messageText = userInput.value.trim();
         const arquivo = fileInput.files[0];
         if (!messageText && !arquivo) return;
 
-        // 1. Mostra a mensagem do utilizador à direita (com o cartão do anexo)
+        // Mostra a mensagem do usuário à direita (com o cartão do anexo)
         appendUserMessage(messageText, arquivo);
-
-        // 2. Monta o envio (FormData permite mandar texto + arquivo)
-        const formData = new FormData();
-        formData.append('message', messageText);
-        if (arquivo) formData.append('arquivo', arquivo);
-
         userInput.value = '';
         clearAttachment();
         scrollToBottom();
 
-                const digitando = mostrarDigitando();
+        enviarMensagem(messageText, arquivo);
+    });
+
+    // Envia ao servidor; em caso de falha mostra o alerta com "Tentar novamente."
+    async function enviarMensagem(messageText, arquivo) {
+        const formData = new FormData();
+        formData.append('message', messageText);
+        if (arquivo) formData.append('arquivo', arquivo);
+
+        const tentarDeNovo = { texto: 'Tentar novamente.', acao: function () { enviarMensagem(messageText, arquivo); } };
+        const digitando = mostrarDigitando();
         try {
             // Sem Content-Type: o navegador define sozinho para FormData
             const response = await fetch("{% url 'ia_chat' %}", {
@@ -185,23 +287,22 @@
                 body: formData
             });
 
-            const data = await response.json();
+            let data = {};
+            try { data = await response.json(); } catch (e) {}
             digitando.remove();
 
-            // 3. Mostra a resposta do Brian à esquerda
-            if (data.reply) {
+            if (response.ok && data.reply) {
                 digitarMensagem(data.reply);
             } else {
-                appendMessage("Desculpa, ocorreu um erro ao processar a resposta.", 'brian-message');
+                // Erro do servidor (ex.: 500): alerta em vez de mostrar o erro técnico no chat
+                mostrarAlerta('erro', 'Não consegui responder agora.', tentarDeNovo);
             }
-
             scrollToBottom();
         } catch (error) {
             digitando.remove();
-            appendMessage("Erro de ligação ao servidor.", 'brian-message');
-            scrollToBottom();
+            mostrarAlerta('aviso', 'Sua internet está instável.', tentarDeNovo);
         }
-    });
+    }
 
     function appendMessage(text, className) {
         const messageDiv = document.createElement('div');
@@ -209,7 +310,6 @@
 
         const bubbleDiv = document.createElement('div');
         bubbleDiv.classList.add('message-bubble');
-        bubbleDiv.style.whiteSpace = 'pre-wrap';
         bubbleDiv.textContent = text;
 
         messageDiv.appendChild(bubbleDiv);
@@ -261,7 +361,6 @@
 
         if (text) {
             const textDiv = document.createElement('div');
-            textDiv.style.whiteSpace = 'pre-wrap';
             textDiv.textContent = text;
             bubbleDiv.appendChild(textDiv);
         }
@@ -274,7 +373,7 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-        // Três pontinhos enquanto o Brian pensa
+    // Três pontinhos enquanto o Brian pensa
     function mostrarDigitando() {
         const msg = document.createElement('div');
         msg.classList.add('message', 'brian-message', 'brian-digitando');
@@ -293,7 +392,6 @@
         msg.classList.add('message', 'brian-message');
         const bolha = document.createElement('div');
         bolha.classList.add('message-bubble');
-        bolha.style.whiteSpace = 'pre-wrap';
         msg.appendChild(bolha);
         chatMessages.appendChild(msg);
 
@@ -311,6 +409,7 @@
 {{ perguntas|json_script:"quiz-perguntas" }}
 {{ perguntas_contexto|json_script:"quiz-contexto" }}
 
+<!-- Quiz dentro do chat -->
 <script>
 (function () {
     const PERGUNTAS = JSON.parse(document.getElementById('quiz-perguntas').textContent);
@@ -318,6 +417,7 @@
     const QUIZ_URL = "{% url 'quiz_enviar' %}";
     const AUTOMATICO = "{{ iniciar_quiz|yesno:'true,false' }}" === "true";
     const btnQuiz = document.getElementById('btn-quiz');
+    const quizPerfil = document.getElementById('quiz-perfil');
     const btnEnviar = chatForm.querySelector('.btn-send-icon');
     const placeholderOriginal = userInput.placeholder;
 
@@ -335,10 +435,10 @@
             : placeholderOriginal;
     }
 
-    // Mensagem do BrIAn com botões de resposta
+    // Mensagem do BRIAN com botões de resposta
     function mensagemComBotoes(texto, botoes) {
         const msg = document.createElement('div');
-        msg.classList.add('message', 'brian-message');
+        msg.classList.add('message', 'brian-message', 'brian-message--opcoes');
 
         const bolha = document.createElement('div');
         bolha.classList.add('message-bubble');
@@ -369,7 +469,7 @@
     // Campo de texto para a opção "Outro"
     function pedirTexto(etapa) {
         const msg = document.createElement('div');
-        msg.classList.add('message', 'brian-message');
+        msg.classList.add('message', 'brian-message', 'brian-message--opcoes');
 
         const bolha = document.createElement('div');
         bolha.classList.add('message-bubble');
@@ -382,9 +482,11 @@
         campo.type = 'text';
         campo.maxLength = 80;
         campo.placeholder = 'Escreva aqui...';
+        campo.setAttribute('aria-label', 'Sua resposta');
 
         const enviar = document.createElement('button');
         enviar.type = 'submit';
+        enviar.className = 'quiz-chat-opcao';
         enviar.textContent = 'Enviar';
 
         form.appendChild(campo);
@@ -420,7 +522,7 @@
             'Antes de começarmos, quero te conhecer melhor. São ' + etapas.length +
             ' perguntas rápidas e, com as respostas, eu adapto minhas explicações à sua empresa e ao seu nível em IoT.',
             [
-                { texto: 'Vamos lá', acao: mostrarEtapa },
+                { texto: 'Fazer quiz', acao: mostrarEtapa },
                 { texto: 'Agora não', acao: pularQuiz }
             ]
         );
@@ -460,7 +562,7 @@
     function pularQuiz() {
         emAndamento = false;
         bloquearChat(false);
-        appendMessage('Sem problema! Pode me perguntar o que quiser. Se mudar de ideia, use o botão "Fazer o quiz" na lateral.', 'brian-message');
+        appendMessage('Sem problema! Pode me perguntar o que quiser. Se mudar de ideia, use o botão "Fazer Quiz" na lateral.', 'brian-message');
         scrollToBottom();
         try { sessionStorage.setItem('quizPulado', '1'); } catch (e) {}
     }
@@ -483,9 +585,12 @@
                 '\n\nAgora pode me perguntar o que quiser sobre a BZU e IoT.',
                 'brian-message'
             );
-            btnQuiz.textContent = 'Seu perfil: ' + res.titulo + ' · Refazer quiz';
+            btnQuiz.textContent = 'Refazer Quiz';
+            quizPerfil.textContent = 'Seu perfil: ' + res.titulo;
+            quizPerfil.hidden = false;
+            mostrarAlerta('sucesso', 'Seu perfil foi salvo.');
         } catch (e) {
-            appendMessage('Não consegui salvar seu quiz agora. Tente de novo pelo botão "Fazer o quiz" na lateral.', 'brian-message');
+            mostrarAlerta('erro', 'Não consegui salvar seu quiz.', { texto: 'Tentar novamente.', acao: finalizar });
         }
 
         emAndamento = false;
@@ -503,31 +608,24 @@
 </script>
 
 {% if not user.is_authenticated %}
-
-<div class="bzu-popup-overlay" id="bzu-popup" role="dialog" aria-modal="true" aria-labelledby="bzu-popup-title">
+<!-- brian-card-login: pop-up para quem não está logado -->
+<div class="bzu-popup-overlay" id="bzu-popup" role="dialog" aria-modal="true" aria-labelledby="bzu-popup-title" aria-describedby="bzu-popup-text">
     <div class="bzu-popup-card">
-        <button type="button" class="bzu-popup-close" id="bzu-popup-close" aria-label="Fechar">✕</button>
+        <button type="button" class="bzu-popup-close" id="bzu-popup-close" aria-label="Fechar">
+            <!-- Close_round -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/></svg>
+        </button>
 
-        <svg class="bzu-popup-robo" viewBox="0 0 120 120" aria-hidden="true">
-            <circle class="bzu-robo-fundo" cx="60" cy="60" r="56"/>
-            <line class="bzu-robo-antena" x1="60" y1="22" x2="60" y2="34" stroke-width="4" stroke-linecap="round"/>
-            <circle class="bzu-robo-detalhe" cx="60" cy="19" r="5"/>
-            <rect class="bzu-robo-detalhe" x="22" y="50" width="8" height="16" rx="4"/>
-            <rect class="bzu-robo-detalhe" x="90" y="50" width="8" height="16" rx="4"/>
-            <rect class="bzu-robo-corpo" x="30" y="34" width="60" height="48" rx="14"/>
-            <circle class="bzu-robo-olho" cx="47" cy="56" r="6"/>
-            <circle class="bzu-robo-olho" cx="73" cy="56" r="6"/>
-            <path class="bzu-robo-sorriso" d="M48 70 Q60 78 72 70" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <rect class="bzu-robo-detalhe" x="42" y="86" width="36" height="12" rx="6"/>
-        </svg>
+        <img class="bzu-popup-mascote" src="{% static 'assets_brian/img/brian-mascote.svg' %}" alt="" width="24" height="36">
 
-        <div>
-            <h2 class="bzu-popup-title" id="bzu-popup-title">Olá, eu sou o BRIAN</h2>
-            <p class="bzu-popup-text">Faça o login para poder salvar o histórico de sua conversa a qualquer momento.</p>
-            <div class="bzu-popup-actions">
-                <a href="{% url 'login' %}?next={% url 'ia_chat' %}" class="bzu-popup-btn bzu-popup-btn-primary">Fazer login</a>
-                <button type="button" class="bzu-popup-btn bzu-popup-btn-secondary" id="bzu-popup-skip">Continuar sem login</button>
-            </div>
+        <div class="bzu-popup-info">
+            <h2 class="bzu-popup-title" id="bzu-popup-title">Olá, eu sou o BRIAN!</h2>
+            <p class="bzu-popup-text" id="bzu-popup-text">Faça o login para poder salvar o histórico de sua conversa a qualquer momento.</p>
+        </div>
+
+        <div class="bzu-popup-actions">
+            <a href="{% url 'login' %}?next={% url 'ia_chat' %}" class="button button--primary bzu-popup-btn-primary">Fazer Login</a>
+            <button type="button" class="button button--outline" id="bzu-popup-skip">Fechar</button>
         </div>
     </div>
 </div>
@@ -540,7 +638,7 @@
     function fecharPopup() {
         popup.classList.add('bzu-hidden');
         const campo = document.getElementById('user-input');
-        if (campo) campo.focus();
+        if (campo && !campo.disabled) campo.focus();
     }
 
     document.getElementById('bzu-popup-close').addEventListener('click', fecharPopup);
@@ -551,6 +649,7 @@
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') fecharPopup();
     });
+    document.querySelector('.bzu-popup-btn-primary').focus();
 })();
 </script>
 {% endif %}
