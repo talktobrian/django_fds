@@ -25,8 +25,67 @@
 
     --black: #000000;
     --white: #ffffff;
-    --text-heading: #262626;
-    --text-subtitle: #525252;
+    --text-heading: var(--grey-900);   /* Figma Text/heading #0b0b0b */
+    --text-subtitle: var(--grey-625);  /* Figma Text/caption #3e3e3e */
+
+    /* ---- Tokens semânticos (Figma: coleção "Mapped", modo Light) ---- */
+    --surface-page: var(--white);
+    --surface-page-dark: var(--grey-900);
+    --surface-default: var(--orange-50);
+    --surface-default-secondary: var(--white);
+    --surface-action: var(--orange-500);
+    --surface-action-secondary: var(--purple-500);
+    --surface-action-hover: var(--orange-900);
+    --surface-action-hover-alt: var(--orange-50);
+    --surface-action-secondary-hover-alt: var(--purple-50);
+    --surface-success: var(--green-50);
+    --surface-error: var(--red-50);
+    --surface-warning: var(--orange-50);
+    --surface-information: var(--blue-50);
+    --surface-information-dark: var(--blue-625);
+    --surface-disabled: var(--grey-100);
+    --surface-dark: var(--grey-775);
+    --surface-dark-hover: var(--grey-625);
+
+    --border-default: var(--orange-100);
+    --border-action: var(--orange-500);
+    --border-action-secondary: var(--purple-500);
+    --border-action-hover: var(--orange-900);
+    --border-action-hover-alt: var(--orange-625);
+    --border-success: var(--green-500);
+    --border-error: var(--red-500);
+    --border-warning: var(--orange-375);
+    --border-information: var(--blue-500);
+    --border-disabled: var(--grey-500);
+    --border-focus: var(--orange-500);
+    --border-dark: var(--grey-775);
+    --border-dark-hover: var(--grey-625);
+
+    --text-body: var(--grey-775);
+    --text-body-dark: var(--grey-225);
+    --text-heading-dark: var(--grey-100);
+    --text-caption: var(--grey-625);
+    --text-caption-dark: var(--grey-375);
+    --text-placeholder: var(--grey-375);
+    --text-on-action: var(--white);
+    --text-action: var(--orange-500);
+    --text-action-secondary: var(--purple-500);
+    --text-action-hover: var(--orange-900);
+    --text-action-hover-alt: var(--orange-625);
+    --text-success: var(--green-625);
+    --text-error: var(--red-625);
+    --text-warning: var(--orange-625);
+    --text-information: var(--blue-500);
+    --text-disabled: var(--grey-500);
+
+    --icon-default: var(--grey-775);
+    --icon-default-dark: var(--grey-225);
+    --icon-placeholder: var(--grey-500);
+    --icon-on-action: var(--white);
+    --icon-action: var(--orange-500);
+    --icon-action-hover-alt: var(--orange-625);
+    --icon-error: var(--red-500);
+    --icon-disabled: var(--grey-500);
 
     /* ---- Fontes ---- */
     --font-display: "Momo Trust Display", "Carlito", sans-serif;   /* H1, H2, botões */
@@ -46,7 +105,7 @@
     --fs-body-md: 16px; --lh-body-md: 20px;
     --fs-body-sm: 12px; --lh-body-sm: 16px;
     --fs-caption: 12px; --lh-caption: 16px;
-    --fs-button: 16px;  --lh-button: 20px;
+    --fs-button: 20px;  --lh-button: normal;   /* Figma estilo Button: 20px, altura de linha auto */
 
     --fs-body: var(--fs-body-md);
     --lh-body: var(--lh-body-md);
@@ -61,10 +120,13 @@
     --pad-y-slim: 60px;
 
     /* ---- Raios / transições ---- */
-    --radius-sm: 4px;      /* botões e inputs */
-    --radius: 8px;         /* cards, alertas */
-    --btn-radius-primary: var(--radius-sm);
-    --btn-radius-secondary: var(--radius-sm);
+    /* Raios VISÍVEIS: o Figma usa contorno de 1px POR FORA, então raio do frame + 1px */
+    --radius-sm: 4px;      /* escala do styleguide (Border radius/lg) */
+    --radius: 8px;         /* cards, alertas (Border radius/xl) */
+    --radius-button: 3px;  /* Button: frame r=2 + contorno 1px por fora */
+    --radius-field: 5px;   /* Field / prompt input: frame r=4 + contorno 1px por fora */
+    --btn-radius-primary: var(--radius-button);
+    --btn-radius-secondary: var(--radius-button);
     --btn-fs: var(--fs-button);
     --transition: all 0.2s ease-in-out;
 
@@ -87,24 +149,21 @@
     --texto-6: var(--grey-50);
 }
 
-/* Tablet: títulos reduzem proporcionalmente (o styleguide só define desktop) */
+/* Modo "Mobile" da coleção Responsive do Figma (só existem Desktop e Mobile).
+   H5, H6 e textos não mudam. */
 @media (max-width: 1024px) {
     :root {
         --fs-h1: 48px; --lh-h1: 56px;
         --fs-h2: 40px; --lh-h2: 48px;
         --fs-h3: 32px; --lh-h3: 40px;
-        --fs-h4: 28px; --lh-h4: 34px;
+        --fs-h4: 28px; --lh-h4: 32px;
         --pad-y: 100px; --pad-y-slim: 50px;
     }
 }
 
-/* Mobile */
+/* Mobile: só o espaçamento das seções diminui; a tipografia fica no modo Mobile acima */
 @media (max-width: 640px) {
     :root {
-        --fs-h1: 36px; --lh-h1: 44px;
-        --fs-h2: 32px; --lh-h2: 40px;
-        --fs-h3: 28px; --lh-h3: 34px;
-        --fs-h4: 24px; --lh-h4: 28px;
         --pad-y: 80px; --pad-y-slim: 40px;
     }
 }
@@ -114,11 +173,11 @@
     --bg-body: #ffffff;
     --card-bg: var(--texto-6);
     --input-bg: #ffffff;
-    --border-color: #e2d6ec;
-    --text-primary: var(--texto-2);
+    --border-color: var(--border-default);
+    --text-primary: var(--text-body);      /* Figma Text/body #1e1e1e */
     --text-secondary: var(--texto-3);
     --text-muted: var(--texto-4);
-    --text-color: var(--texto-2);
+    --text-color: var(--text-body);
 
     --brand: var(--laranja-500);
     --brand-hover: var(--laranja-700);
@@ -379,7 +438,10 @@ a { color: var(--link); }
     color: var(--grey-775);
 }
 .campo__input::placeholder { color: var(--grey-375); opacity: 1; }
-.campo__input:focus { outline: none; border-color: var(--orange-500); }
+.campo__input:hover { background: var(--surface-action-hover-alt); border-color: var(--border-action-hover-alt); color: var(--text-action-hover-alt); }
+/* Figma: no foco a borda continua orange-100; anel de 2px a 2px de distância (vermelho no erro) */
+.campo__input:focus { outline: none; }
+.campo__input:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; background: var(--white); border-color: var(--orange-100); color: var(--grey-775); }
 .campo__dica {
     margin-top: -8px;                      /* Figma: 4px entre campo e dica (gap do grupo é 12px) */
     font-family: var(--font-body);
@@ -397,6 +459,9 @@ a { color: var(--link); }
     color: var(--red-500);
 }
 .campo--erro .campo__input { border-color: var(--red-500); color: var(--red-625); }
+.campo--erro .campo__input:hover,
+.campo--erro .campo__input:focus-visible { background: var(--surface-error); border-color: var(--red-500); color: var(--red-625); }
+.campo--erro .campo__input:focus-visible { outline-color: var(--border-error); }
 
 /* ===== LOGIN / CRIAR CONTA (Figma: login-* / signup-*) ===== */
 .auth {
@@ -493,49 +558,57 @@ a { color: var(--link); }
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--radius-field);
     font-size: var(--fs-body);
     color: var(--text-primary);
     background-color: var(--input-bg);
     transition: var(--transition);
 }
-.form-control:focus {
-    outline: none;
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(245, 93, 34, 0.25);
-}
+.form-control::placeholder { color: var(--text-placeholder); opacity: 1; }
+.form-control:hover { background-color: var(--surface-action-hover-alt); border-color: var(--border-action-hover-alt); }
+/* Figma: no foco a borda NÃO muda; aparece um anel de 2px a 2px de distância */
+.form-control:focus { outline: none; }
+.form-control:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; background-color: var(--input-bg); border-color: var(--border-color); }
+.form-control:disabled { background-color: var(--surface-disabled); border-color: var(--border-disabled); color: var(--text-disabled); }
 textarea.form-control { resize: vertical; min-height: 100px; }
 
-/* Primário: laranja, fonte de botão do styleguide, raio 4px */
+/* Primário = Button Type=default (skill §2.4): contorno 1px por fora, raio visível 3px, Momo Trust Display 20px */
 .btn-primary {
     width: 100%;
-    background-color: var(--brand);
-    color: #fff;
-    padding: 11px 16px;
-    border: 2px solid var(--brand);
+    background-color: var(--surface-action);
+    color: var(--text-on-action);
+    padding: 11px 12px;          /* 26px de texto + 11px + 1px de borda = 50px visíveis (frame 48 + contorno por fora) */
+    border: 1px solid var(--border-action);
     border-radius: var(--btn-radius-primary);
     font-family: var(--font-button);
     font-size: var(--btn-fs);
-    font-weight: 700;
+    line-height: var(--lh-button);
+    font-weight: 400;
     cursor: pointer;
     transition: var(--transition);
 }
-.btn-primary:hover { background-color: var(--brand-hover); border-color: var(--brand-hover); }
+.btn-primary:hover { background-color: var(--surface-action-hover); border-color: var(--border-action-hover); }
 
-/* Secundário: transparente, borda 2px, raio 0 (use class="btn-secondary") */
+/* Secundário = Button Type=outline (use class="btn-secondary") */
 .btn-secondary {
-    background: transparent;
-    color: var(--link);
-    padding: 11px 16px;
-    border: 2px solid var(--brand);
+    background: var(--surface-default-secondary);
+    color: var(--text-action);
+    padding: 11px 12px;
+    border: 1px solid var(--border-action);
     border-radius: var(--btn-radius-secondary);
     font-family: var(--font-button);
     font-size: var(--btn-fs);
-    font-weight: 700;
+    line-height: var(--lh-button);
+    font-weight: 400;
     cursor: pointer;
     transition: var(--transition);
 }
-.btn-secondary:hover { background: var(--brand); color: #fff; }
+.btn-secondary:hover { background: var(--surface-action-hover-alt); }
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+.btn-primary:disabled,
+.btn-secondary:disabled { background: var(--surface-disabled); border-color: var(--border-disabled); color: var(--text-disabled); cursor: not-allowed; }
 
 .error-message {
     color: var(--danger);
