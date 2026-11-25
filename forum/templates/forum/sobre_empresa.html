@@ -20,12 +20,14 @@
             </p>
         </div>
 
-        <!-- bzu-sensor-hero: no Figma é um vídeo; aqui usamos o quadro estático exportado.
-             Para usar o vídeo, coloque bzu-sensor-hero.mp4 na mesma pasta e troque por <video>. -->
-        <img class="bzu-hero__midia"
-             src="{% static 'assets_brian/sobre a bzu/bzu-sensor-hero.png' %}"
-             alt="Ilustração do sensor da Bzu com conexão Wi-Fi, LoRa e LTE"
-             width="790" height="444">
+        <!-- bzu-sensor-hero: vídeo em loop (o PNG é o quadro inicial / fallback), como no Início -->
+        <video class="bzu-hero__midia"
+               autoplay muted loop playsinline preload="metadata"
+               poster="{% static 'assets_brian/sobre a bzu/bzu-sensor-hero.png' %}"
+               width="790" height="444"
+               aria-label="Animação do sensor da Bzu com conexão Wi-Fi, LoRa e LTE">
+            <source src="{% static 'assets_brian/sobre a bzu/bzu-sensor-hero.mp4' %}" type="video/mp4">
+        </video>
     </section>
 
     <!-- services-section -->
