@@ -11,17 +11,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Courier+Prime:wght@400;700&family=Momo+Trust+Display&family=Momo+Trust+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Geist+Mono:wght@400&family=Momo+Trust+Display&family=Momo+Trust+Sans:wght@400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5.3">
-
-    <!-- Aplica o tema salvo antes de renderizar a página (evita tela branca rápida) -->
-    <script>
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-    </script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=6.1">
 
 </head>
 
@@ -40,9 +32,6 @@
                     <a href="{{ url_contato }}" {% if request.path == url_contato %}class="active"{% endif %}>Fale Conosco</a>
                 </div>
                 
-                <button id="theme-toggle" class="theme-switch" type="button" aria-label="Alternar tema" title="Alternar tema">
-                    <span class="switch-ball"></span>
-                </button>
                 
                 {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}" class="logout-form">
@@ -108,22 +97,6 @@
 
   <p class="footer-copy">© 2026 BRIAN | Todos os direitos reservados.</p>
 </footer>
-
-
-
-    <!-- Script de alternância do Modo Escuro -->
-
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-
-        toggleBtn.addEventListener('click', () => {
-            let activeTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-    </script>
 
 </body>
 

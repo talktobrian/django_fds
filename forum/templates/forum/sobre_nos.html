@@ -210,16 +210,12 @@
 </section>
 
 <style>
-    /* Usa as variáveis do style.css (cores, fontes e modo escuro já vêm de lá) */
+    /* Usa as variáveis do style.css (corese fontes já vêm de lá) */
 
     /* ---------- Títulos e textos ---------- */
     .equipe-titulo {
         color: var(--laranja-700);
         margin-bottom: 12px;
-    }
-
-    [data-theme="dark"] .equipe-titulo {
-        color: var(--laranja-300);
     }
 
     .equipe-intro {
@@ -318,8 +314,6 @@
         background: var(--roxo-200);
     }
 
-    [data-theme="dark"] .equipe-circulo--rosa { background: var(--laranja-900); }
-    [data-theme="dark"] .equipe-circulo--roxo { background: var(--roxo-600); }
 
     .membros-grid {
         display: grid;
@@ -375,7 +369,7 @@
 
     .membro__curso {
         display: block;
-        font-family: "Courier Prime", monospace;
+        font-family: var(--font-caption);
         font-size: 13px;
         color: var(--laranja-500);
         margin-bottom: 4px;
@@ -475,16 +469,6 @@
     .equipe-btn--contorno:hover {
         background: var(--roxo-600);
         color: #fff;
-    }
-
-    [data-theme="dark"] .equipe-btn--contorno {
-        border-color: var(--roxo-200);
-        color: var(--roxo-200);
-    }
-
-    [data-theme="dark"] .equipe-btn--contorno:hover {
-        background: var(--roxo-200);
-        color: var(--roxo-900);
     }
 
     /* ---------- Tablet ---------- */

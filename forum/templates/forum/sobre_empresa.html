@@ -180,7 +180,7 @@
 </section>
 
 <style>
-    /* Usa as variáveis do style.css (cores, fontes e modo escuro já vêm de lá) */
+    /* Usa as variáveis do style.css (corese fontes já vêm de lá) */
 
     /* ---------- Títulos e textos de seção ---------- */
     .sobre-titulo {
@@ -267,10 +267,6 @@
         z-index: 0;
     }
 
-    [data-theme="dark"] .sobre-ajuda__circulo {
-        background: var(--laranja-900);
-    }
-
     .sobre-cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -317,7 +313,7 @@
 
     .sobre-card__etiqueta {
         display: block;
-        font-family: "Courier Prime", monospace;
+        font-family: var(--font-caption);
         font-size: 13px;
         color: var(--laranja-500);
         margin-bottom: 4px;
@@ -347,10 +343,6 @@
         border-radius: 50%;
         background: var(--roxo-200);
         z-index: 0;
-    }
-
-    [data-theme="dark"] .sobre-casos__circulo {
-        background: var(--roxo-600);
     }
 
     .carrossel {
@@ -486,8 +478,6 @@
     .sobre-final__laranja { color: var(--laranja-700); }
     .sobre-final__roxo { color: var(--roxo-600); }
 
-    [data-theme="dark"] .sobre-final__laranja { color: var(--laranja-300); }
-    [data-theme="dark"] .sobre-final__roxo { color: var(--roxo-200); }
 
     .sobre-final p {
         margin-top: 16px;
@@ -537,16 +527,6 @@
     .sobre-btn--contorno:hover {
         background: var(--roxo-600);
         color: #fff;
-    }
-
-    [data-theme="dark"] .sobre-btn--contorno {
-        border-color: var(--roxo-200);
-        color: var(--roxo-200);
-    }
-
-    [data-theme="dark"] .sobre-btn--contorno:hover {
-        background: var(--roxo-200);
-        color: var(--roxo-900);
     }
 
     /* ---------- Tablet ---------- */
